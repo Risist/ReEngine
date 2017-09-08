@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9AE9FFBE-4B1F-48E4-8E73-66119FC204B4}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ReEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\ReEngine;$(SolutionDir)\External\Box2D-master\Box2D\Include;$(SolutionDir)\External\SFML-2.4.1\include;$(SolutionDir)\External\thor\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;$(SolutionDir)\External\thor\lib;$(SolutionDir)\External\SFML-2.4.1\lib;$(SolutionDir)\External\Box2D-master\Box2D\Lib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\ReEngine;$(SolutionDir)\External\Box2D-master\Box2D\Include;$(SolutionDir)\External\SFML-2.4.1\include;$(SolutionDir)\External\thor\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;$(SolutionDir)\External\thor\lib;$(SolutionDir)\External\SFML-2.4.1\lib;$(SolutionDir)\External\Box2D-master\Box2D\Lib\Release</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;RE_EDITOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>
+$(SolutionDir)\External\thor\lib;
+$(SolutionDir)\External\SFML-2.4.1\lib;
+$(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
+</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;thor-d.lib;box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;RE_EDITOR%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ReEngine.cpp" />
+    <ClCompile Include="Re\Ai\AiEmotionDef.cpp" />
+    <ClCompile Include="Re\Ai\BehaviourTree\Composite\BtSelector.cpp" />
+    <ClCompile Include="Re\Ai\BehaviourTree\Composite\BtSequencer.cpp" />
+    <ClCompile Include="Re\Ai\Dialogue\AiDialogue.cpp" />
+    <ClCompile Include="Re\Ai\Mind\AiBehaviours.cpp" />
+    <ClCompile Include="Re\Ai\Mind\AiBehavioursEvaluate.cpp" />
+    <ClCompile Include="Re\Ai\Mind\AiMind.cpp" />
+    <ClCompile Include="Re\Ai\Sense\Filters\SenseFilterCircle.cpp" />
+    <ClCompile Include="Re\Ai\Sense\Filters\SenseFilterCone.cpp" />
+    <ClCompile Include="Re\Ai\Sense\Queries\SenseBestQuery.cpp" />
+    <ClCompile Include="Re\Ai\Sense\SenseHolder.cpp" />
+    <ClCompile Include="Re\Common\Control\ControlAxis.cpp" />
+    <ClCompile Include="Re\Common\Control\ControlMouseDrag.cpp" />
+    <ClCompile Include="Re\Common\Control\ControlKey.cpp" />
+    <ClCompile Include="Re\Common\Control\ControlMultiKey.cpp" />
+    <ClCompile Include="Re\Common\Control\ControlTimer.cpp" />
+    <ClCompile Include="Re\Common\Operators.cpp" />
+    <ClCompile Include="Re\Common\Math\Angle.cpp" />
+    <ClCompile Include="Re\Common\Math\Math.cpp" />
+    <ClCompile Include="Re\Common\Math\Vector2D.cpp" />
+    <ClCompile Include="Re\Common\RandomChance.cpp" />
+    <ClCompile Include="Re\Common\Settings.cpp" />
+    <ClCompile Include="Re\Game\Effect\Audio\EffectAudioSource.cpp" />
+    <ClCompile Include="Re\Game\Effect\effects.cpp" />
+    <ClCompile Include="Re\Game\Effect\EffectBase.cpp" />
+    <ClCompile Include="Re\Game\Effect\EffectLambda.cpp" />
+    <ClCompile Include="Re\Game\Effect\EffectTransformable.cpp" />
+    <ClCompile Include="Re\Game\Effect\Graphical\EffectAnimationManager.cpp" />
+    <ClCompile Include="Re\Game\Effect\Graphical\EffectDisplayable.cpp" />
+    <ClCompile Include="Re\Game\Effect\Graphical\EffectModel.cpp" />
+    <ClCompile Include="Re\Game\Effect\Graphical\EffectFollowCamera.cpp" />
+    <ClCompile Include="Re\Game\Effect\Health\EffectDamageOnCollision.cpp" />
+    <ClCompile Include="Re\Game\Effect\Health\EffectHealth.cpp" />
+    <ClCompile Include="Re\Game\Effect\Health\EffectDeathControll.cpp" />
+    <ClCompile Include="Re\Game\Effect\Health\EffectSpawnOnDeath.cpp" />
+    <ClCompile Include="Re\Game\Effect\Movement\EffectMovementAim.cpp" />
+    <ClCompile Include="Re\Game\Effect\Movement\EffectMotor.cpp" />
+    <ClCompile Include="Re\Game\Effect\Movement\Player\EffectRadiusMovement.cpp" />
+    <ClCompile Include="Re\Game\Effect\Movement\Player\EffectRotatedMovement.cpp" />
+    <ClCompile Include="Re\Game\Effect\Movement\Player\EffectStaticMovement.cpp" />
+    <ClCompile Include="Re\Game\Effect\Movement\Player\EffectMouseMovement.cpp" />
+    <ClCompile Include="Re\Game\Effect\Physics\EffectFixture.cpp" />
+    <ClCompile Include="Re\Game\Effect\Physics\EffectRigidbody.cpp" />
+    <ClCompile Include="Re\Game\Effect\Physics\PhysicsDefs.cpp" />
+    <ClCompile Include="Re\Game\GameActor.cpp" />
+    <ClCompile Include="Re\Game\GameWorld.cpp" />
+    <ClCompile Include="Re\Game\InputController.cpp" />
+    <ClCompile Include="Re\Game\State\GameState.cpp" />
+    <ClCompile Include="Re\Game\State\GameStateLambda.cpp" />
+    <ClCompile Include="Re\Game\State\GameStateManager.cpp" />
+    <ClCompile Include="Re\Graphics\Camera.cpp" />
+    <ClCompile Include="Re\Graphics\GraphicsBackground.cpp" />
+    <ClCompile Include="Re\Graphics\GraphicsLightController.cpp" />
+    <ClCompile Include="Re\Graphics\Gui\Gui.cpp" />
+    <ClCompile Include="Re\Graphics\Gui\GuiBase.cpp" />
+    <ClCompile Include="Re\Graphics\Gui\GuiButton.cpp" />
+    <ClCompile Include="Re\Graphics\Gui\GuiCheckBox.cpp" />
+    <ClCompile Include="Re\Graphics\Gui\GuiColorBar.cpp" />
+    <ClCompile Include="Re\Graphics\Gui\GuiInspector.cpp" />
+    <ClCompile Include="Re\Graphics\Gui\GuiMenu.cpp" />
+    <ClCompile Include="Re\Graphics\Gui\GuiNamedButton.cpp" />
+    <ClCompile Include="Re\Graphics\Gui\GuiProgressBar.cpp" />
+    <ClCompile Include="Re\Graphics\Gui\GuiScrollBar.cpp" />
+    <ClCompile Include="Re\Graphics\Gui\GuiSetBar.cpp" />
+    <ClCompile Include="Re\Graphics\Gui\GuiText.cpp" />
+    <ClCompile Include="Re\Graphics\Model\GraphicsAnimationController.cpp" />
+    <ClCompile Include="Re\Graphics\Model\GraphicsAnimationPart.cpp" />
+    <ClCompile Include="Re\Graphics\Model\GraphicsAnimationStep.cpp" />
+    <ClCompile Include="Re\Graphics\Model\GraphicsMetaAnimationController.cpp" />
+    <ClCompile Include="Re\Graphics\Model\GraphicsMetaAnimationPart.cpp" />
+    <ClCompile Include="Re\Graphics\Model\GraphicsModel.cpp" />
+    <ClCompile Include="Re\Graphics\Model\GraphicsModelDef.cpp" />
+    <ClCompile Include="Re\Graphics\ResourceManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Re\Ai\ai.h" />
+    <ClInclude Include="Re\Ai\AiEmotionDef.h" />
+    <ClInclude Include="Re\Ai\BehaviourTree\behaviourTree.h" />
+    <ClInclude Include="Re\Ai\BehaviourTree\BtBase.h" />
+    <ClInclude Include="Re\Ai\BehaviourTree\BtComposite.h" />
+    <ClInclude Include="Re\Ai\BehaviourTree\BtDecorator.h" />
+    <ClInclude Include="Re\Ai\BehaviourTree\BtRoot.h" />
+    <ClInclude Include="Re\Ai\BehaviourTree\Composite\BtSelector.h" />
+    <ClInclude Include="Re\Ai\BehaviourTree\Composite\BtSequencer.h" />
+    <ClInclude Include="Re\Ai\BehaviourTree\Decorator\BtDecoratorForTime.h" />
+    <ClInclude Include="Re\Ai\BehaviourTree\Decorator\BtDecoratorLambda.h" />
+    <ClInclude Include="Re\Ai\BehaviourTree\Decorator\BtDecoratorLoop.h" />
+    <ClInclude Include="Re\Ai\BehaviourTree\Decorator\BtDecoratorResult.h" />
+    <ClInclude Include="Re\Ai\BehaviourTree\Leaf\BtLeafLambda.h" />
+    <ClInclude Include="Re\Ai\BehaviourTree\Leaf\BtLeafWait.h" />
+    <ClInclude Include="Re\Ai\Dialogue\AiDialogue.h" />
+    <ClInclude Include="Re\Ai\Mind\AiBehavioursEvaluate.h" />
+    <ClInclude Include="Re\Ai\Mind\AiBehaviours.h" />
+    <ClInclude Include="Re\Ai\Mind\AiMind.h" />
+    <ClInclude Include="Re\Ai\Sense\Filters\SenseFilterCircle.h" />
+    <ClInclude Include="Re\Ai\Sense\Filters\SenseFilterCone.h" />
+    <ClInclude Include="Re\Ai\Sense\Queries\SenseBestQuery.h" />
+    <ClInclude Include="Re\Ai\Sense\sense.h" />
+    <ClInclude Include="Re\Ai\Sense\SenseFilterBase.h" />
+    <ClInclude Include="Re\Ai\Sense\SenseHolder.h" />
+    <ClInclude Include="Re\Common\Control\ControlMouseDrag.h" />
+    <ClInclude Include="Re\Common\Control\Control.h" />
+    <ClInclude Include="Re\Common\Control\ControlAxis.h" />
+    <ClInclude Include="Re\Common\Control\ControlKey.h" />
+    <ClInclude Include="Re\Common\Control\ControlMultiKey.h" />
+    <ClInclude Include="Re\Common\Control\ControlTimer.h" />
+    <ClInclude Include="Re\Common\Operators.h" />
+    <ClInclude Include="Re\Common\Math\Angle.h" />
+    <ClInclude Include="Re\Common\Math\Math.h" />
+    <ClInclude Include="Re\Common\Math\NewtonianResource.h" />
+    <ClInclude Include="Re\Common\Math\Vector2D.h" />
+    <ClInclude Include="Re\Common\RandomChance.h" />
+    <ClInclude Include="Re\Common\Scripts\ResDataScriptLoader.h" />
+    <ClInclude Include="Re\Common\Scripts\ResDataScriptSaver.h" />
+    <ClInclude Include="Re\Common\Scripts\ResISerialisable.h" />
+    <ClInclude Include="Re\Common\Scripts\ResScripts.h" />
+    <ClInclude Include="Re\Common\Settings.h" />
+    <ClInclude Include="Re\Common\Struct\ConstantStack.h" />
+    <ClInclude Include="Re\Common\utility.h" />
+    <ClInclude Include="Re\Game\Effect\Audio\EffectAudioSource.h" />
+    <ClInclude Include="Re\Game\Effect\EffectBase.h" />
+    <ClInclude Include="Re\Game\Effect\EffectLambda.h" />
+    <ClInclude Include="Re\Game\Effect\effects.h" />
+    <ClInclude Include="Re\Game\Effect\EffectTransformable.h" />
+    <ClInclude Include="Re\Game\Effect\Graphical\EffectAnimationManager.h" />
+    <ClInclude Include="Re\Game\Effect\Graphical\EffectDisplayable.h" />
+    <ClInclude Include="Re\Game\Effect\Graphical\EffectModel.h" />
+    <ClInclude Include="Re\Game\Effect\Graphical\EffectFollowCamera.h" />
+    <ClInclude Include="Re\Game\Effect\Health\EffectDamageOnCollision.h" />
+    <ClInclude Include="Re\Game\Effect\Health\EffectHealth.h" />
+    <ClInclude Include="Re\Game\Effect\Health\EffectDeathControll.h" />
+    <ClInclude Include="Re\Game\Effect\Health\EffectSpawnOnDeath.h" />
+    <ClInclude Include="Re\Game\Effect\Movement\EffectMovementAim.h" />
+    <ClInclude Include="Re\Game\Effect\Movement\EffectMotor.h" />
+    <ClInclude Include="Re\Game\Effect\Movement\Player\EffectRadiusMovement.h" />
+    <ClInclude Include="Re\Game\Effect\Movement\Player\EffectRotatedMovement.h" />
+    <ClInclude Include="Re\Game\Effect\Movement\Player\EffectStaticMovement.h" />
+    <ClInclude Include="Re\Game\Effect\Movement\Player\EffectMouseMovement.h" />
+    <ClInclude Include="Re\Game\Effect\Physics\EffectFixture.h" />
+    <ClInclude Include="Re\Game\Effect\Physics\EffectRigidbody.h" />
+    <ClInclude Include="Re\Game\Effect\Physics\PhysicsDefs.h" />
+    <ClInclude Include="Re\Game\Game.h" />
+    <ClInclude Include="Re\Game\GameActor.h" />
+    <ClInclude Include="Re\Game\GameLayer.h" />
+    <ClInclude Include="Re\Game\GameWorld.h" />
+    <ClInclude Include="Re\Game\InputController.h" />
+    <ClInclude Include="Re\Game\State\GameState.h" />
+    <ClInclude Include="Re\Game\State\GameStateLambda.h" />
+    <ClInclude Include="Re\Game\State\GameStateManager.h" />
+    <ClInclude Include="Re\Graphics\Camera.h" />
+    <ClInclude Include="Re\Graphics\Graphics.h" />
+    <ClInclude Include="Re\Graphics\GraphicsBackground.h" />
+    <ClInclude Include="Re\Graphics\GraphicsLightController.h" />
+    <ClInclude Include="Re\Graphics\Gui\Gui.h" />
+    <ClInclude Include="Re\Graphics\Gui\GuiBase.h" />
+    <ClInclude Include="Re\Graphics\Gui\GuiButton.h" />
+    <ClInclude Include="Re\Graphics\Gui\GuiCheckBox.h" />
+    <ClInclude Include="Re\Graphics\Gui\GuiColorBar.h" />
+    <ClInclude Include="Re\Graphics\Gui\GuiInspector.h" />
+    <ClInclude Include="Re\Graphics\Gui\GuiMenu.h" />
+    <ClInclude Include="Re\Graphics\Gui\GuiNamedButton.h" />
+    <ClInclude Include="Re\Graphics\Gui\GuiProgressBar.h" />
+    <ClInclude Include="Re\Graphics\Gui\GuiScrollBar.h" />
+    <ClInclude Include="Re\Graphics\Gui\GuiSetBar.h" />
+    <ClInclude Include="Re\Graphics\Gui\GuiSpecial.h" />
+    <ClInclude Include="Re\Graphics\Gui\GuiText.h" />
+    <ClInclude Include="Re\Graphics\Model\GraphicsAnimationController.h" />
+    <ClInclude Include="Re\Graphics\Model\GraphicsAnimationPart.h" />
+    <ClInclude Include="Re\Graphics\Model\GraphicsAnimationStep.h" />
+    <ClInclude Include="Re\Graphics\Model\GraphicsMetaAnimationController.h" />
+    <ClInclude Include="Re\Graphics\Model\GraphicsMetaAnimationPart.h" />
+    <ClInclude Include="Re\Graphics\Model\GraphicsModel.h" />
+    <ClInclude Include="Re\Graphics\Model\GraphicsModelDef.h" />
+    <ClInclude Include="Re\Graphics\ResourceManager.h" />
+    <ClInclude Include="Re\Lambdas.h" />
+    <ClInclude Include="Re\ReEngine.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Documentation\Documentation_Game_Module.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

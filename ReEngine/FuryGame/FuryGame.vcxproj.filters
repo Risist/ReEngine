@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="warrior">
+      <UniqueIdentifier>{8fdb5acb-e2c5-4b79-b6e2-306bc6f671f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="warrior\reaper">
+      <UniqueIdentifier>{a6b35621-d6e9-4d3a-a92e-5699eecb3f11}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FuryMain.cpp" />
+    <ClCompile Include="Layers.cpp" />
+    <ClCompile Include="Warrior\WarriorPlayer.cpp">
+      <Filter>warrior</Filter>
+    </ClCompile>
+    <ClCompile Include="StateWhiteVoid.cpp" />
+    <ClCompile Include="ActorHumanoidNpc.cpp" />
+    <ClCompile Include="ActorWeapon.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Layers.h" />
+    <ClInclude Include="Warrior\WarriorPlayer.h">
+      <Filter>warrior</Filter>
+    </ClInclude>
+    <ClInclude Include="StateWhiteVoid.h" />
+    <ClInclude Include="ActorHumanoidNpc.h" />
+    <ClInclude Include="ActorWeapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Warrior\model_Full.txt">
+      <Filter>warrior</Filter>
+    </Text>
+    <Text Include="anim_reaperPose.txt">
+      <Filter>warrior\reaper</Filter>
+    </Text>
+    <Text Include="anim_reaperSlash.txt">
+      <Filter>warrior\reaper</Filter>
+    </Text>
+    <Text Include="model_reaper.txt">
+      <Filter>warrior\reaper</Filter>
+    </Text>
+    <Text Include="anim_reaperWalk.txt">
+      <Filter>warrior\reaper</Filter>
+    </Text>
+    <Text Include="anim_reaperPull.txt">
+      <Filter>warrior\reaper</Filter>
+    </Text>
+    <Text Include="anim_reaperGreatSlash.txt">
+      <Filter>warrior\reaper</Filter>
+    </Text>
+    <Text Include="anim_reaperPush.txt">
+      <Filter>warrior\reaper</Filter>
+    </Text>
+    <Text Include="anim_reaperHelper.txt">
+      <Filter>warrior\reaper</Filter>
+    </Text>
+    <Text Include="model_barrel.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

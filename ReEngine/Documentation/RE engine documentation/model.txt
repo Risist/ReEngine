@@ -1,0 +1,54 @@
+Every file of this type is nammed if fasion "model_NameOfModel.txt"
+
+Let's take a look on example:
+"
+<ts = 6; ud = 1; rot = 0;  scaleX = 1.1; scaleY = 1.15; posY = 0; posX = -35; clR = 100; clG = 45; clB = 25>
+
+	<ts = 7; ud = 0; posY = -200; posX = -40; scaleX = -0.75; scaleY = 0.75; rot = 20 ><\>
+
+<\>
+"
+
+Single model building:
+< parametrs >
+	Other model connected to this above
+	<parametrs>
+		next model
+		<><\>
+	<\>
+	Other model connected to this above
+	<parametrs><\>
+<\>
+
+the models has hierarhicial building. One is conected to another. if the model has conected more than one sub model the order of displaying depends on order in file (it can be changed by parametr "ud" look down)
+
+parametrs and its description:
+
+all those parametrs are float type ( can be negative and floating like "-1545.525584")
+
+"posX";"posY" - where model is depending on position, scale and rotation of it's parent (model above) default = 0
+"posNoRotX", "posNoRotY" - the same like above but rotation of parent does not matter. default = 0
+"scaleX","scaleY" - how big is the object; default = 1
+"rot" - rotation around center; default = 0
+"rotAround" - rotation of position around center; default = 0
+
+all those parametrs are in range of 0...255 where 0 is none of the color and 255 is full color
+
+"clR","clG","clB" - intensitivity of color Red, Green, Blue. default = 255
+"clA" - intensivity of canal alpha (how transparent is the object. 0 - unseen, 255 - fully visible); default = 255
+
+and there are few SPECIAL parametrs:
+"ts" - id of texture the model will use. Check your texture file to see which texture you will need. default = 0 (no texture)
+"ud" - shorter from up down. Where is the model dependingly on it's parent? above (0) or lower (1) default = 0
+
+//////////
+you have addictional oportunities to change how parametrs works
+to name of parametr you can add something 
+
+// randomization
+by adding "_max" to name of parametr (such as "posX_max") you can chose to random initial value of the model. Does not work with special parametrs "ts" and "ud"
+
+for example:
+<posX = 1; posX_max = 5;> position of the object will be randomized from 1 to 5. basic name works like minimal value. If minimal value is higher than maximal result is undefined.
+
+TODO: "centerX" "centerY" "_cMin" "_cMax"

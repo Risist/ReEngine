@@ -1,0 +1,32 @@
+
+
+<layersN = 5; clR = 15; clB = 0; clG = 0; clA = 50; changeRadius = 15; cdChange = 0.05;>
+	<posX = 60;		posY = 0>
+	<posX = 0;		posY = 60>
+	<posX = -60;	posY = 0>
+	<posX = 0;		posY = -75>
+<\>	
+	<layersN = 5; clR = 0; clB = 0; clG = 0; clA = 60; changeRadius = 10; cdChange = 0.05; ud =up>
+		<posX = -30;	posY = 50>
+		<posX = -50;	posY = -25>
+		<posX = 0;		posY = -85>
+		<posX = 50;		posY = -25>
+		<posX = 30;		posY = 50>
+		<posX = 0;		posY = 0>
+	<\>	
+	<\>
+
+	<layersN = 5; clR = 0; clB = 0; clG = 0; clA = 75; changeRadius = 20; cdChange = 0.05; posX = -30; posY = -10;rot = -30>
+		<posX = 30;		posY = 0>
+		<posX = -40;	posY = 0>
+		<posX = -60;	posY = 60>
+	<\><\>
+	
+	<layersN = 5; clR = 0; clB = 0; clG = 0; clA = 75; changeRadius = 20; cdChange = 0.05; posX = 30; scaleX = -1; posY = -10;rot = 30>
+		<posX = 30;		posY = 0>
+		<posX = -40;	posY = 0>
+		<posX = -60;	posY = 60>
+	<\><\>
+
+
+<\>

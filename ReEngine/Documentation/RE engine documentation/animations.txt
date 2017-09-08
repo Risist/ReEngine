@@ -1,0 +1,27 @@
+Every file of this type is nammed in fasion "animation_NameOfObject_NameOfAnimation.txt"
+
+example:
+"
+< step = 0; stepMin = -75; stepMax = 75; speed = 10 >
+	<model = 2; rot = -0.704; rotAround = -0.704;>
+	<model = 3; rot = -0.384; rotAround = -0.384; posX = 0.448>
+
+	<model = 4; rot = -0.704; rotAround = -0.704;>
+	<model = 5; rot = -0.384; rotAround = -0.384; posX = 0.448>
+<\>
+"
+
+first line contains base parametrs of animation;
+
+"step" - initial step of animation
+"stepMin" "stepMax" - range of step
+"speed" - mostly not used (only in case of looped animations), how fast animation works
+
+
+next you have some animationStep s
+it has some special parametrs:
+"stepMin" "stepMax" - currently does not work well, in which range of animation this animationStep works;
+model - onto which model this animationStep afects
+
+rest parametrs are taken from model file (without special once)
+the values are added to model each step (randomisation works, but only once at loading the animation)

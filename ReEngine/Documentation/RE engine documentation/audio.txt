@@ -1,0 +1,9 @@
+prepathSound =..\\Resources\\Audio\\;
+prepathMusic =..\\Resources\\Audio\\;
+
+< type =sound; path =Sound\\soundname.ogg;	id =1>
+< type =music; path =Music\\musicname.ogg;	id=1>
+
+
+getOwner()->addEfect(new Efect::Sound(1))->setWhenPlaying([=]() {return isExecuting();});
+addEfect(new Efect::Music({ 1,2 }))->setWhenPlaying([=]() {return isAlive();});

@@ -1,0 +1,18 @@
+Every file of this type is nammed in a way 
+"texture_NameOfState.txt"
+
+First lets take a look at example of texture file
+< path =Graphics\\>
+	// shiveil
+	< path =shiveil\\headDk--.png>		1
+	< path =shiveil\\shieldDk.png>		2
+	< path =shiveil\\armDk.png>		3
+	< path =shiveil\\arm2Dk.png>		4
+	< path =shiveil\\weaponDk.png>		5
+<\>
+
+at first line path parametr describes somewhat prepath.
+That means this string is added to every path of texture you are trying to add
+
+next you have some textures to add. Every texture has his own index. So worth is to write it before/ afrer (like those 1,2,3 above).
+Texture with index 0 is an empty texture

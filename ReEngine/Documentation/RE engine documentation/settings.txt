@@ -1,0 +1,9 @@
+there is one file of this type per game
+
+it is so simple, just set some parametrs
+
+"resolutionX" "resolutionY" - how big is the game window
+"framerateLimit" how many frames per secound can be maximal
+"fulScrean" - 0 to windowed, 1 to fullScrean view
+
+"mouseSensitivity" - i hope i don't have to describe it

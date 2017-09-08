@@ -1,0 +1,10 @@
+<>	
+	<posX = 0; rot = 30>
+		<effectType = DebugCircle; clR = 155; clG = 255; clB = 155; clA = 155; posX = 150; radius = 200>
+		<\>
+		<effectType = Rigidbody; bodyDefId = 1>
+			<effectType =Fixture; fixtureDefId = 1; shapeDef = 1; shapeType= circle;>
+			<\>
+		<\>
+	<\>
+<\>

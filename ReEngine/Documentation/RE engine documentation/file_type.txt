@@ -1,0 +1,27 @@
+Every file in the game engine is builded in the same set of rules.
+
+Basically if something is outside < ... > is ignored. You can use that to write comments to block some parts (if there was no "<" character ">" is ignored )
+
+inside you can set some of parametrs, it depends on type of file you want to edit (check another documentation file to see more informations)
+
+it works like that: nameOfParametr =value; 
+nameOfParametr is always without white characters ( like space, enter, tabulation ect. )
+
+worth to note is that strings ( names, paths ect) are loaded from sign = to ; including all spaces so best idea is to write something like that " path=Terrain\\object.png; "
+
+/// multi line 
+
+if you edit object like model, tecture list ect there is something more.
+
+< basicParam1 =fsdfs; basicParam2 =fsdfsdf; ... >
+	<childObjectParams =fsdfsd; ... >
+	<childObjectParams =fsdfsd; ... >
+	<childObjectParams =fsdfsd; ... >
+	...
+<\>
+
+at most cases first <> contains basic params of object
+then you have some child objects
+and at the end of list "<\>". Worth to note is that it should be exacly <\> or game will stop working (endless loading, if it happends use task manager to close the game)
+
+Now go to other files which will be describing how specific types of files works.

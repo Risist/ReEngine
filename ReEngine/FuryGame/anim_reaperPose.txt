@@ -1,0 +1,8 @@
+< step =15; >
+	<model = 4; rotAround = 2.; posY = 1>
+	<model = 5; rot = -0.125; posY = -0.15 >
+	<model = 6; rotAround = 1.; posY = 1>
+	<model = 7; rot = 0.125; posY = -0.15>
+
+	<model = 1; rotAround = 1.75; posY = 0.>
+<\>

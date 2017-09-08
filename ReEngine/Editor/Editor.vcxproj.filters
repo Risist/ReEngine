@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\StandardGui">
+      <UniqueIdentifier>{4d198205-c9e1-423f-904c-cad5f0364928}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Gui.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Resources.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="ColorBar.txt">
+      <Filter>Resource Files\StandardGui</Filter>
+    </Text>
+    <Text Include="Model.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Background.txt">
+      <Filter>Resource Files\StandardGui</Filter>
+    </Text>
+    <Text Include="Button.txt">
+      <Filter>Resource Files\StandardGui</Filter>
+    </Text>
+    <Text Include="ButtonHalf.txt">
+      <Filter>Resource Files\StandardGui</Filter>
+    </Text>
+    <Text Include="SetBar.txt">
+      <Filter>Resource Files\StandardGui</Filter>
+    </Text>
+    <Text Include="Text.txt">
+      <Filter>Resource Files\StandardGui</Filter>
+    </Text>
+    <Text Include="CheckBox.txt">
+      <Filter>Resource Files\StandardGui</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="EditorMain.cpp" />
+    <ClCompile Include="EditorModel.cpp" />
+    <ClCompile Include="EditorShape.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EditorModel.h" />
+    <ClInclude Include="EditorShape.h" />
+  </ItemGroup>
+</Project>

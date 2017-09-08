@@ -1,0 +1,94 @@
+
+Game module controls whole game workflow. Rest modules has utility role and 
+should be somehow used in game module to have an influence on engine.
+
+The lowest level class is Efect::Base which is a base class for any component-like class
+In the namespace are placed components possible for usage
+
+There are sevral efect packages;
+	efects.h			includes almost every component available in engine
+	efectsBullet.h		includes components which helps with common tasks that bullets will face
+	efectsGraphics.h	includes components that will can display comething within game world
+							and manipulate camera (following, light ect. )
+	efectsHealth.h		includes components for damage controlling. Efect::Health is most important class
+							whenever you want to use this module you should add this effect
+	efectsMovement.h	includes most possible ways of controlling your character movement in top down view.
+							adds components for npc's and for player
+	efectsPhysics.h		includes components for physics usage. Many of components are only helpers for creation
+							and self deletes after adding to actorList
+	efectsSense.h		includes components used for sense mechanism.
+
+Efect::Base
+	Base class for all efects. Contains many virtual functions which are called somewhere within game loop
+	Efects can be activated or deactivated via 'activated' property.
+	Efects can be removed via setting canBeDeleted property to true;
+	Efects holds pointner to Actor that is its owner in property 'owner'.
+		use functions "getOwner" and "setOwner" instead
+
+	void onInit()
+		Called when owner pointner is setted up. Works almost like constructor 
+		but allows to safetly initialise owner related data
+	void onRestart()
+		currently not used, called exacly after onInit, will change in future(or will be removed)
+	void onStart()
+		called once after owner is added to world list 
+		(Warring! currently adding  components to just added actor will not fire this event)
+
+	void onLateUpdate(sf::Time dt)
+		update event called every frame; dt is time elapsed from last update. 
+		Most task will be computed within onUpdate.
+
+	bool onDeath(sf::Time dt)
+		called when Actor will be considered as dead (isAlive function returns false); 
+		At the time Actor is not updated; instead the function is called; Returns true if object can be removed;
+		This allows you to for example respawn Actor by calling setAlive(true);
+
+	void onCollisionEnter(Game::Actor& otherActor, b2Contact& contact)
+	void onCollisionExit(Game::Actor& otherActor, b2Contact& contact)
+		called when actor enters the collision area; there is no onCollisionStay event (TODO)
+
+
+	bool shouldCollide(b2Fixture* myFixture, b2Fixture* otherFixture)
+		allows you to filter whether or not some colliders should collide
+
+
+Efect::Multi
+	Component connecting many other efects in one, helps supporting tree-like structure
+
+	most of events simply calls every child;
+	onInit event does nothing -> onInit will be called on childs while adding them to Multi
+	onDeath, shouldCollide returns bool; all components have to return true in order to make Multi return it as well
+
+	T* addEfect(T* _new, bool activated = true);
+		adds new efect to the container. returns _new pointner; The reason to this is to simplify operations;
+		you can assing it to some pointner in the same line, like as well set efect specific propertites
+		_new should be allocated on heap, its removed by Multi so do not try to delete it by your own
+		activated bool allows you to set whether or not efect should be activated from beggining
+
+		example:
+		auto efect = multi.addEfect( new Efect::SomeEfect)
+			->setSomething();
+
+	T* getEfect<T>();
+	void getEfects<T>(list<T*>& r);
+	void getEfects<T>(vector<T*>& r);
+		search for efects which derives from T (some Efect::Base class) that are placed in efects list
+			
+		first version searches for first found efect, if found none returns nullptr,
+		where second(and third) puts every found efect this type into r container
+
+Game::Actor
+	Base game entity class. Derives from Efect::Multi so can hold efects like Multi.
+
+	One difference to Multi is Actor cant have owner. If you put Actor 
+	in place where efect is expected and owner is used Actor will be owner for himself
+
+	setAlive, isAlive(); functions added to Actor, should be used instead of readyToRemove bool
+
+	Actor is responsible for holding, removing and creating Rigidbody
+	void createRigidbody( const b2BodyDef& def);
+		Most often you should create rigidbody by specialised component Efect::Rigidbody
+		in special cases pass there definition of rigidbody
+	b2Body& getRigidbody()
+		returns reference to holded rigidbody. Will assert if there is none
+

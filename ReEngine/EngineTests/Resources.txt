@@ -1,0 +1,23 @@
+< prepathGraphics =..\\Resources\\Graphics\\; 
+	prepathFont =..\\Resources\\Fonts\\;
+	prepathSound =..\\Resources\\Audio\\;
+	>
+
+	< type =atlas; path =Terrain\\grass.png;		atlasId =100>
+
+	< type =atlas; path =shiveil\\arm2dk.png;		atlasId =200>
+	< type =atlas; path =shiveil\\armdk.png;		atlasId =201>
+	< type =atlas; path =shiveil\\headdk--.png;		atlasId =202>
+	< type =atlas; path =shiveil\\shieldDk.png;		atlasId =203>
+	< type =atlas; path =shiveil\\weaponDk.png;		atlasId =204>
+	< type =atlas; path =shiveil\\axe_stick.png;	atlasId =205>
+	< type =atlas; path =shiveil\\axe_blade.png;	atlasId =206>
+
+
+	/// physics
+	< type =rigidbody;					id = 1; linearDamping = 10; >
+	< type =fixture;					id = 1>
+	< type =circleShape; radius = 2;	id = 1>
+
+	< type =font;	 path =Akv.ttf;					id =1>
+<\>

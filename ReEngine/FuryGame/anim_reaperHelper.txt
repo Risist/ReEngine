@@ -1,0 +1,28 @@
+< step = 0; stepMin = 0; stepMax = 350; speed = 7.75 >
+	
+	/// 1
+	
+	<model = 4; rotAround = 0.5; stepMax = 120>
+	<model = 5; rotAround = 0.15; stepMax = 120>
+	
+	<model = 6; rotAround = 0.05; stepMax = 120>
+	<model = 7; rotAround = -0.2; stepMax = 120>	
+
+	<model = 1; rotAround = 0.2; posX = -2.5; posY = -0.2; stepMax = 60;>		
+	
+	<model = 1; rotAround = 0.0; posX = -0.5; stepMin = 60; stepOffset = -60; stepMax = 130;>		
+	
+	/// 2
+	
+	
+	<model = 1; rotAround = 0; posX = 8.; stepMin = 150; stepOffset = -150; stepMax = 190;>		
+	
+	<model = 4; rotAround = 0.2; stepMin = 150; stepMax = 190; stepOffset = -150>
+	<model = 5; rotAround = -0.85; stepMin = 150; stepMax = 190; stepOffset = -150>
+	<model = 6; rotAround = 0.2; stepMin = 150; stepMax = 190; stepOffset = -150>
+	<model = 7; rotAround = 1.75; stepMin = 150; stepMax = 190; stepOffset = -150>
+	
+	<model = 0; rot = 0.75; stepMin = 150; stepMax = 190; stepOffset = -150>
+	
+	<type = back; stepMin = 250; stepMax = 350>
+<\>

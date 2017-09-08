@@ -1,0 +1,12 @@
+< prepathGraphics =..\\Resources\\Graphics\\; prepathFont =..\\Resources\\Fonts\\>
+
+	< type =texture; path =Zero\\demon_head.png;	id =1>	
+	< type =texture; path =Zero\\demon_tail.png;	id =2>	
+	< type =texture; path =Zero\\demon_arm.png;		id =3>
+	
+	< type =texture; path =blood\\blood1.png;		id =11>	
+	
+	< type =texture; path =Terrain\\grass.png;		id =4>
+
+	< type =font;	 path =Akv.ttf;					id =1>
+<\>

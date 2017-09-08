@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\shaders">
+      <UniqueIdentifier>{311ee1e3-78d5-47c1-a849-56d49e7e5917}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\reaper">
+      <UniqueIdentifier>{70393296-33a9-48f0-91d1-bb5a0150c89a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{bdde1788-3c46-4ef0-bd2a-63b023a15190}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Layers.cpp" />
+    <ClCompile Include="mainTest.cpp" />
+    <ClCompile Include="StateGuiTest.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="animation.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="GuiTest.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="model.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Resources.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="modelBlood.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="modelBullet.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="world_test.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="frag_shader.txt">
+      <Filter>Resource Files\shaders</Filter>
+    </Text>
+    <Text Include="vertex_shader.txt">
+      <Filter>Resource Files\shaders</Filter>
+    </Text>
+    <Text Include="anim_reaperGreatSlash.txt">
+      <Filter>Resource Files\reaper</Filter>
+    </Text>
+    <Text Include="anim_reaperHelper.txt">
+      <Filter>Resource Files\reaper</Filter>
+    </Text>
+    <Text Include="anim_reaperPose.txt">
+      <Filter>Resource Files\reaper</Filter>
+    </Text>
+    <Text Include="anim_reaperPull.txt">
+      <Filter>Resource Files\reaper</Filter>
+    </Text>
+    <Text Include="anim_reaperPush.txt">
+      <Filter>Resource Files\reaper</Filter>
+    </Text>
+    <Text Include="anim_reaperSlash.txt">
+      <Filter>Resource Files\reaper</Filter>
+    </Text>
+    <Text Include="anim_reaperWalk.txt">
+      <Filter>Resource Files\reaper</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Layers.h" />
+    <ClInclude Include="StateGuiTest.h">
+      <Filter>States</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
