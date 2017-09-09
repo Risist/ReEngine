@@ -8,6 +8,28 @@ namespace Graphics
 {
 	class AnimationPart;
 
+
+	class ModelPart
+	{
+	public:
+
+
+		virtual void update(const ModelDef& def);
+		virtual void display(sf::RenderTarget& target, sf::RenderStates& states);
+
+
+
+	private:
+		ModelDef baseDef;
+		ModelDef actualDef;
+		ModelDef lastDef;
+		size_t appliedAnimationsCount;
+
+
+	};
+
+
+
 	class Model : 
 		public ModelDef
 	{
