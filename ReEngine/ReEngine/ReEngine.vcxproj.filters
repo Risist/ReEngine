@@ -180,12 +180,6 @@
     <ClInclude Include="Re\Graphics\Model\GraphicsAnimationStep.h">
       <Filter>Graphics\Model</Filter>
     </ClInclude>
-    <ClInclude Include="Re\Graphics\Model\GraphicsMetaAnimationPart.h">
-      <Filter>Graphics\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Re\Graphics\Model\GraphicsMetaAnimationController.h">
-      <Filter>Graphics\Model</Filter>
-    </ClInclude>
     <ClInclude Include="Re\Ai\Mind\AiMind.h">
       <Filter>Ai\Mind</Filter>
     </ClInclude>
@@ -495,12 +489,6 @@
       <Filter>Graphics\Model</Filter>
     </ClCompile>
     <ClCompile Include="Re\Graphics\Model\GraphicsAnimationStep.cpp">
-      <Filter>Graphics\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="Re\Graphics\Model\GraphicsMetaAnimationPart.cpp">
-      <Filter>Graphics\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="Re\Graphics\Model\GraphicsMetaAnimationController.cpp">
       <Filter>Graphics\Model</Filter>
     </ClCompile>
     <ClCompile Include="Re\Ai\Mind\AiMind.cpp">

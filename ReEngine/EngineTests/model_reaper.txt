@@ -1,0 +1,20 @@
+< posX = 0 ; posY = 0 ; ts = 0, rot = 0 ; scaleX = 0.65 ; scaleY = 0.65; >
+
+	<ts = 205; rot = -90; posY = -70; posX = -90; originX = 0; clG = 150;clB = 200; scaleY = 1.1>
+		<ts = 206; posY = -205; posX = 50; clG = 150; ud =up; rotSprite = -30; scaleY = 1.2; scaleX = 0.75 ><\>
+	<\>
+
+
+	< ts = 202; rot = 0; scaleX = 1; scaleY = 1; clR = 150; clG=100; clB=150; >
+		<ts = 200; rot = 40; posX = -50; posY = 5; clG = 150; > left arm
+			<ts = 201; rot = 120; ud = 1; posX = -45; clG = 200>
+			<\>
+		<\>
+		<ts = 200; rot = -40; posX = 50; posY = 5; clG = 150; >
+			<ts = 201; rot = -120; ud = 1; posX = 45; clG = 200>
+			<\>
+		<\>
+	<\>
+	
+	< ts = 203; rot = 180; scaleX = 0.85; scaleY = 0.8; posY = -35; clG = 200 ><\> head
+<\>

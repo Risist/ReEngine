@@ -1,4 +1,4 @@
-< step = 0; stepMin = 0; stepMax = 350; speed = 8.5 >
+< step = 0; stepMin = 0; stepMax = 350; speed = 5. >
 	
 	/// 1
 	

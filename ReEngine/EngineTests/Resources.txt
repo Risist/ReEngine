@@ -14,10 +14,6 @@
 	< type =atlas; path =shiveil\\axe_blade.png;	atlasId =206>
 
 
-	/// physics
-	< type =rigidbody;					id = 1; linearDamping = 10; >
-	< type =fixture;					id = 1>
-	< type =circleShape; radius = 2;	id = 1>
 
 	< type =font;	 path =Akv.ttf;					id =1>
 <\>

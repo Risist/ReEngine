@@ -14,12 +14,21 @@
     <Filter Include="States">
       <UniqueIdentifier>{bdde1788-3c46-4ef0-bd2a-63b023a15190}</UniqueIdentifier>
     </Filter>
+    <Filter Include="States\Gameplay">
+      <UniqueIdentifier>{d03ba9c9-5c39-4959-9ff5-f7862e04e482}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Layers.cpp" />
     <ClCompile Include="mainTest.cpp" />
     <ClCompile Include="StateGuiTest.cpp">
       <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorPlayer.cpp">
+      <Filter>States\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="StateGameplay.cpp">
+      <Filter>States\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -53,9 +62,6 @@
     <Text Include="anim_reaperGreatSlash.txt">
       <Filter>Resource Files\reaper</Filter>
     </Text>
-    <Text Include="anim_reaperHelper.txt">
-      <Filter>Resource Files\reaper</Filter>
-    </Text>
     <Text Include="anim_reaperPose.txt">
       <Filter>Resource Files\reaper</Filter>
     </Text>
@@ -71,11 +77,20 @@
     <Text Include="anim_reaperWalk.txt">
       <Filter>Resource Files\reaper</Filter>
     </Text>
+    <Text Include="model_reaper.txt">
+      <Filter>Resource Files\reaper</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Layers.h" />
     <ClInclude Include="StateGuiTest.h">
       <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorPlayer.h">
+      <Filter>States\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="StateGameplay.h">
+      <Filter>States\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

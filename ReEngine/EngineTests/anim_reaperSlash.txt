@@ -1,4 +1,4 @@
-< step = 0; stepMin = -125; stepMax = 80; speed = -7.5 >
+< step = 0; stepMin = -125; stepMax = 80; speed = -5. >
 	
 	<model = 0; rot = 0.45; stepMin = -100; stepMax = 100; rotSprite = 10000>
 	
