@@ -231,8 +231,6 @@ $(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
     <ClCompile Include="Re\Graphics\Model\GraphicsAnimationController.cpp" />
     <ClCompile Include="Re\Graphics\Model\GraphicsAnimationPart.cpp" />
     <ClCompile Include="Re\Graphics\Model\GraphicsAnimationStep.cpp" />
-    <ClCompile Include="Re\Graphics\Model\GraphicsMetaAnimationController.cpp" />
-    <ClCompile Include="Re\Graphics\Model\GraphicsMetaAnimationPart.cpp" />
     <ClCompile Include="Re\Graphics\Model\GraphicsModel.cpp" />
     <ClCompile Include="Re\Graphics\Model\GraphicsModelDef.cpp" />
     <ClCompile Include="Re\Graphics\ResourceManager.cpp" />
@@ -281,6 +279,7 @@ $(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
     <ClInclude Include="Re\Common\Scripts\ResScripts.h" />
     <ClInclude Include="Re\Common\Settings.h" />
     <ClInclude Include="Re\Common\Struct\ConstantStack.h" />
+    <ClInclude Include="Re\Common\Struct\BinaryTree.h" />
     <ClInclude Include="Re\Common\utility.h" />
     <ClInclude Include="Re\Game\Effect\Audio\EffectAudioSource.h" />
     <ClInclude Include="Re\Game\Effect\EffectBase.h" />
@@ -332,8 +331,6 @@ $(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
     <ClInclude Include="Re\Graphics\Model\GraphicsAnimationController.h" />
     <ClInclude Include="Re\Graphics\Model\GraphicsAnimationPart.h" />
     <ClInclude Include="Re\Graphics\Model\GraphicsAnimationStep.h" />
-    <ClInclude Include="Re\Graphics\Model\GraphicsMetaAnimationController.h" />
-    <ClInclude Include="Re\Graphics\Model\GraphicsMetaAnimationPart.h" />
     <ClInclude Include="Re\Graphics\Model\GraphicsModel.h" />
     <ClInclude Include="Re\Graphics\Model\GraphicsModelDef.h" />
     <ClInclude Include="Re\Graphics\ResourceManager.h" />

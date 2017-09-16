@@ -6,11 +6,11 @@ namespace Graphics
 	const ModelDef ModelDef::zero(Vector2D(), Angle::zero, Color_f(), Vector2D(), Angle::zero);
 
 	ModelDef::ModelDef(const Vector2D & _position, Angle _rot, Color_f _color, const Vector2D & _scale, Angle _rotAround)
-		: pos(_position), rot(_rot), color(_color), scale(_scale), rotAround(_rotAround)
+		: position(_position), rotation(_rot), color(_color), scale(_scale), mineRotation(_rotAround)
 	{
 	}
 
-	void ModelDef::setSprite(sf::Sprite & toUpdate, const sf::Transformable& parent) const
+	/*void ModelDef::setSprite(sf::Sprite & toUpdate, const sf::Transformable& parent) const
 	{
 		toUpdate.setPosition( 
 			(pos* parent.getScale() ).
@@ -44,133 +44,109 @@ namespace Graphics
 		));
 		toUpdate.setOrigin(toUpdate.getTextureRect().width*0.5f + origin.x,
 			toUpdate.getTextureRect().height*0.5f + origin.y);
-	}
+	}*/
 
 	ModelDef ModelDef::operator+(const ModelDef & other)  const
 	{
 		ModelDef def;
-		def.pos = pos + other.pos;
-		def.rot = rot+ other.rot;
-		def.rotAround = rotAround+ other.rotAround;
-		def.rotSprite = rotSprite + other.rotSprite;
+		def.position = position + other.position;
+		def.rotation = rotation + other.rotation;
+		def.mineRotation = mineRotation + other.mineRotation;
 		def.scale = scale + other.scale;
 		def.color = color + other.color;
-		def.origin = origin + other.origin;
 		return def;
 	}
 	ModelDef ModelDef::operator-(const ModelDef & other) const
 	{
 		ModelDef def;
-		def.pos = pos - other.pos;
-		def.rot = rot - other.rot;
-		def.rotAround = rotAround - other.rotAround;
-		def.rotSprite = rotSprite - other.rotSprite;
+		def.position = position - other.position;
+		def.rotation = rotation - other.rotation;
+		def.mineRotation = mineRotation - other.mineRotation;
 		def.scale = scale - other.scale;
 		def.color = color - other.color;
-		def.origin = origin - other.origin;
 		return def;
 	}
 	ModelDef ModelDef::operator*(float32 other) const
 	{
 		ModelDef def;
-		def.pos = pos * other;
-		def.rot = rot * other;
-		def.rotAround = rotAround * other;
-		def.rotSprite = rotSprite * other;
+		def.position = position * other;
+		def.rotation = rotation * other;
+		def.mineRotation = mineRotation * other;
 		def.scale = scale * other;
 		def.color = color * other;
-		def.origin = origin * other;
 		return def;
 	}
 	ModelDef ModelDef::operator/(float32 other) const
 	{
 		assert(other != 0);
 		ModelDef def;
-		def.pos = pos / other;
-		def.rot = rot / other;
-		def.rotAround = rotAround / other;
-		def.rotSprite = rotSprite / other;
+		def.position = position / other;
+		def.rotation = rotation / other;
+		def.mineRotation = mineRotation / other;
 		def.scale = scale / other;
 		def.color = color / other;
-		def.origin = origin / other;
 		return def;
 	}
 	void ModelDef::operator+=(const ModelDef & other)
 	{
-		pos += other.pos;
-		rot += other.rot;
-		rotAround += other.rotAround;
-		rotSprite += other.rotSprite;
+		position += other.position;
+		rotation += other.rotation;
+		mineRotation += other.mineRotation;
 		scale += other.scale;
 		color += other.color;
-		origin += other.origin;
 	}
 	void ModelDef::operator-=(const ModelDef & other)
 	{
-		pos -= other.pos;
-		rot -= other.rot;
-		rotAround -= other.rotAround;
-		rotSprite -= other.rotSprite;
+		position -= other.position;
+		rotation -= other.rotation;
+		mineRotation -= other.mineRotation;
 		scale -= other.scale;
 		color -= other.color;
-		origin -= other.origin;
 	}
 	void ModelDef::operator*=(float32 other)
 	{
-		pos *= other;
-		rot *= other;
-		rotAround *= other;
-		rotSprite *= other;
+		position *= other;
+		rotation *= other;
+		mineRotation *= other;
 		scale *= other;
 		color *= other;
-		origin *= other;
 	}
 	void ModelDef::operator/=(float32 other)
 	{
 		assert(other != 0);
-		pos /= other;
-		rot /= other;
-		rotAround /= other;
-		rotSprite /= other;
+		position /= other;
+		rotation /= other;
+		mineRotation /= other;
 		scale /= other;
 		color /= other;
-		origin /= other;
 	}
 	void ModelDef::serialiseF(std::ostream & file, Res::DataScriptSaver & saver) const
 	{
-		saver.save("posX", pos.x);
-		saver.save("posY", pos.y);
+		saver.save("posX", position.x, ModelDef::default.position.x);
+		saver.save("posY", position.y, ModelDef::default.position.y);
 
-		saver.save("originX", origin.x);
-		saver.save("originY", origin.y);
+		saver.save("scaleX", scale.x, ModelDef::default.scale.x);
+		saver.save("scaleY", scale.y, ModelDef::default.scale.y);
 
-		saver.save("scaleX", scale.x);
-		saver.save("scaleY", scale.y);
-
-		saver.save("rot", rot.asDegree());
-		saver.save("rotAround", rotAround.asDegree());
-		saver.save("rotSprite", rotSprite.asDegree());
-
-		saver.save("clR", color.r);
-		saver.save("clG", color.g);
-		saver.save("clB", color.b);
-		saver.save("clA", color.a);
+		saver.save("rot", rotation.asDegree(), ModelDef::default.rotation.asDegree());
+		saver.save("mineRot", mineRotation.asDegree(), ModelDef::default.mineRotation.asDegree() );
+		
+		saver.save("clR", color.r, ModelDef::default.color.r);
+		saver.save("clG", color.g, ModelDef::default.color.g);
+		saver.save("clB", color.b, ModelDef::default.color.b);
+		saver.save("clA", color.a, ModelDef::default.color.a);
 	}
 	void ModelDef::deserialiseF(std::istream & file, Res::DataScriptLoader & loader)
 	{
-		pos.x = loader.load("posX", ModelDef::default.pos.x);
-		pos.y = loader.load("posY", ModelDef::default.pos.y);
-
-		origin.x = loader.load("originX", ModelDef::default.origin.x);
-		origin.y = loader.load("originY", ModelDef::default.origin.y);
+		position.x = loader.load("posX", ModelDef::default.position.x);
+		position.y = loader.load("posY", ModelDef::default.position.y);
 
 		scale.x = loader.load("scaleX", ModelDef::default.scale.x);
 		scale.y = loader.load("scaleY", ModelDef::default.scale.y);
 
-		rot = Degree(loader.load("rot", ModelDef::default.rot.asDegree()) );
-		rotAround = Degree(loader.load("rotAround", ModelDef::default.rotAround.asDegree()) );
-		rotSprite = Degree(loader.load("rotSprite", ModelDef::default.rotSprite.asDegree()));
-
+		rotation = Degree(loader.load("rot", ModelDef::default.rotation.asDegree()) );
+		mineRotation = Degree(loader.load("mineRot", ModelDef::default.mineRotation.asDegree()) );
+		
 		color.r = loader.load("clR", ModelDef::default.color.r);
 		color.g = loader.load("clG", ModelDef::default.color.g);
 		color.b = loader.load("clB", ModelDef::default.color.b);

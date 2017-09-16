@@ -8,15 +8,10 @@ namespace Graphics
 	{
 	}
 
-	AnimationController::AnimationController(const char * path)
-	{
-		deserialise(path);
-	}
-
-	void AnimationController::onUpdateModel(Step_t scale)
+	void AnimationController::onUpdate()
 	{
 		for (auto it : parts)
-			it.onUpdateModel( scale );
+			it.onUpdate();
 	}
 
 	
@@ -26,50 +21,14 @@ namespace Graphics
 		parts.back().step = &step;
 	}
 
-	
-	void AnimationController::attachToModel(Model & model)
-	{
-		vector<Model*> rewritedVector;
-		model.rewriteToVectorUpdate(rewritedVector);
-
-		for (auto&it : parts)
-		{
-			assert(it.modelId < rewritedVector.size());
-			it.defToUpdate = &rewritedVector[it.modelId]->actualDef;
-		}
-	}
-
-	void AnimationController::attachToModel(vector<Model*>& model)
+	void AnimationController::attachToModel(vector<ModelPart*>& model)
 	{
 		for (auto&it : parts)
 		{
 			assert(it.modelId < model.size());
-			it.defToUpdate = &model[it.modelId]->actualDef;
+			it.attachToModel(model[it.modelId]);
 		}
 	}
-	/**/
-	/// helper struct to force zero sonstructor at ModelDef
-	struct Df : public ModelDef
-	{
-		Df() :ModelDef(ModelDef::zero) {}
-	};
-	void AnimationController::insertBackSteps(Step_t min, Step_t max, Step_t initial)
-	{
-		Step_t stepLenght = 1/(max - min);
-		/// sum of steps at min
-		
-		std::map<  int, Df> partsDef;
-
-		for (auto &it : parts)
-			partsDef[it.modelId] += it.getDefAtStep(min) - it.getDefAtStep(initial);
-
-		for (auto &it : partsDef)
-		{
-			addPart(AnimationPart(it.first, it.second *-stepLenght, min, max) );
-			parts.back().stepOffset = -min;
-		}
-	}
-
 	void AnimationController::serialiseF(std::ostream & file, Res::DataScriptSaver & saver) const
 	{
 #ifdef RE_ENGINE
@@ -84,23 +43,8 @@ namespace Graphics
 
 		DATA_SCRIPT_MULTILINE(file, loader)
 		{
-			string type = loader.load<string>("type", "part");
-
-			if (type == "part")
-			{
-				addPart(AnimationPart(file, loader));
-			}
-			else if( type == "back")
-			{
-				Step_t initial = loader.load("initial", 0.f);
-				Step_t min = loader.load("stepMin", 0.f);
-				Step_t max = loader.load("stepMax", 0.f);
-				insertBackSteps(min, max, initial);
-			}
-			else
-			{
-				cerr << "AnimationController: load type = " << type << " is undefined\n";
-			}
+			addPart(AnimationPart());
+			parts.back().deserialise(file, loader);
 		}
 	}
 

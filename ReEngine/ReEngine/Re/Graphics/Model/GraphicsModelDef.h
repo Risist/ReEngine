@@ -26,7 +26,7 @@ namespace Graphics
 		Vector2D scale{ Vector2D(1,1) };
 		Color_f color;
 		Angle rotation,
-			rotationSelf;
+			mineRotation;
 
 	public: /// operators section
 		ModelDef operator+(const ModelDef& other) const;
