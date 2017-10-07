@@ -21,20 +21,15 @@ namespace Effect
 		virtual void onUpdate(sf::Time dt) override;
 		virtual void onDisplay() override;
 
-		Model* setModelParent(sf::Transformable* parent)
+		Model* setModelParent(Math::Transform* parent)
 		{
-			model.parent = parent;
+			rootModel.setParent( parent );
 			return this;
 		}
 		REDEFINE_SETTER_1(Model, setDisplayLayer, Game::Layer*)
 
 		/// graphics data 
-		Graphics::Model model;
-		vector<Graphics::Model*> modelsUpdate, modelsRendering;
-	private:
-		//ResId resId;
-	/*protected:
-		virtual void serialiseF(std::ostream& file, Res::DataScriptSaver& saver) const override;
-		virtual void deserialiseF(std::istream& file, Res::DataScriptLoader& loader) override;*/
+		Graphics::ModelPart rootModel;
+		vector<Graphics::ModelPart*> modelsUpdate, modelsRendering;
 	};
 }

@@ -27,20 +27,16 @@ Color operator-(const Color& c1, const Color& c2);
 Color operator*(const Color& c1, const Color& c2);
 Color operator/(const Color& c1, const Color& c2);
 
-Color operator+(const Color& c1, float c2);
-Color operator-(const Color& c1, float c2);
-Color operator*(const Color& c1, float c2);
-Color operator/(const Color& c1, float c2);
+Color operator*(const Color& c1, sf::Uint8 c2);
+Color operator/(const Color& c1, sf::Uint8 c2);
 
 void operator+=(Color& c1, const Color& c2);
 void operator-=(Color& c1, const Color& c2);
 void operator*=(Color& c1, const Color& c2);
 void operator/=(Color& c1, const Color& c2);
 
-void operator+=(Color& c1, float& c2);
-void operator-=(Color& c1, float& c2);
-void operator*=(Color& c1, float& c2);
-void operator/=(Color& c1, float& c2);
+void operator*=(Color& c1, sf::Uint8 c2);
+void operator/=(Color& c1, sf::Uint8 c2);
 
 /// Color_f
 Color_f operator+(const Color_f& c1, const Color_f& c2);
@@ -52,6 +48,13 @@ void operator+=(Color_f& c1, const Color_f& c2);
 void operator-=(Color_f& c1, const Color_f& c2);
 void operator*=(Color_f& c1, const Color_f& c2);
 void operator/=(Color_f& c1, const Color_f& c2);
+
+Color_f operator*(const Color_f& c1, float32 c2);
+Color_f operator/(const Color_f& c1, float32 c2);
+
+void operator*=(Color_f& c1, float32 c2);
+void operator/=(Color_f& c1, float32 c2);
+
 
 /// Transformable operators
 

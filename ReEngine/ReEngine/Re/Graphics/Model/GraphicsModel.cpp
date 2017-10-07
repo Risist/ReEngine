@@ -3,145 +3,81 @@
 
 namespace Graphics
 {
-	Model::Model()
-		: parent(nullptr), ModelDef(ModelDef::default)
+	ModelPart::ModelPart()
+		: baseDef(ModelDef::default), animationDef(ModelDef::zero)
 	{
+		setThis((Math::Transform*)this);
 	}
 
-	Model::Model(ResId tsId, const ModelDef& def)
-		: ModelDef(def), parent(nullptr)
+	void ModelPart::applayAnimation(const ModelDef& def)
 	{
-		setTexture(tsId);
+		animationDef += def;
+		++appliedAnimationsCount;
 	}
 
-	Model::Model(const char * path)
-		: parent(nullptr)
+	void ModelPart::onUpdate()
 	{
-		deserialise(path);
-	}
-	Model::Model(ResId scriptId)
-		: parent(nullptr)
-	{
-		deserialiseFromString(scriptInst[scriptId]);
-	}
-
-	void Model::drawSingle(sf::RenderTarget & target, sf::RenderStates states)
-	{
-		//ModelDef def = *this;
-
-		//for (auto &it : parts)
-		//	it->countOffset(def);
-		if(parent)
-			actualDef.setSprite(sp, *parent);
-		else actualDef.setSprite(sp);
-
-
-		sp.rotate(__rotSprite.asDegree());
-		target.draw(sp, states);
-		sp.rotate(-__rotSprite.asDegree());
-
-		actualDef = *this;
-	}
-
-	void Model::drawRecursive(sf::RenderTarget & target, sf::RenderStates states)
-	{
-		if (childDown)
-			childDown->drawRecursive(target, states);
-
-		drawSingle(target, states);
-
-		/// draw sibling
-		if (sibling)
-			sibling->drawRecursive(target, states);
-
-		if (childUp)
-			childUp->drawRecursive(target, states);
-	}
-
-	void Model::rewriteToVectorRendering(std::vector<Model* >& v) const
-	{
-		if (childDown)
-			childDown->rewriteToVectorRendering(v);
-
-		v.push_back((Model*)this);
-
-		if (sibling)
-			sibling->rewriteToVectorRendering(v);
-
-		if (childUp)
-			childUp->rewriteToVectorRendering(v);
-	}
-
-	void Model::updateAsParent()
-	{
-		//ModelDef def = *this;
-
-
-		//for (auto &it : parts)
-		//	it->countOffset(def);
+		assert(getParent());
 		
-		if (parent)
-			actualDef.setSprite(sp, *parent);
-		else actualDef.setSprite(sp);
-		__rotSprite = actualDef.rotSprite;
+		ModelDef actualDef = baseDef;
+		
+		if(appliedAnimationsCount != 0)
+		{
+			float32 divisor = 1.f / (float32)appliedAnimationsCount;
+			animationDef *= divisor;
+			actualDef+=animationDef;
+		}	
 
-		actualDef = *this;
+		setScale(actualDef.scale * getParent()->getScale());
+		
+		setPosition(
+			actualDef.position
+				.getRotated(getParent()->getRotation() + actualDef.rotation)
+					
+			+ getParent()->getPosition()
+		);
+		
+		setRotation(getParent()->getRotation() + actualDef.rotation);
+
+		/// reset animation Count
+		appliedAnimationsCount = 0;
+		animationDef = actualDef;
 	}
-
-	void Model::drawOnly(sf::RenderTarget & target, sf::RenderStates states)
+	
+	void ModelPart::onDraw(RenderTarget & target, RenderStates states)
 	{
-		sp.rotate(__rotSprite.asDegree());
+		/// update from Transformable state
+		sp.setPosition(getPosition());
+		sp.setRotation(getRotation().asDegree() + animationDef.mineRotation.asDegree());
+		sp.setScale(getScale());
+		sp.setColor(
+			Color(
+				(sf::Uint8)clamp(animationDef.color.r , 0.f, 255.f),
+				(sf::Uint8)clamp(animationDef.color.g , 0.f, 255.f),
+				(sf::Uint8)clamp(animationDef.color.b , 0.f, 255.f),
+				(sf::Uint8)clamp(animationDef.color.a , 0.f, 255.f)
+			)
+		);
+
+		/// draw
 		target.draw(sp, states);
-		sp.rotate(-__rotSprite.asDegree());
+
+		/// reset state
+		animationDef = ModelDef::zero;
 	}
 
-	void Model::rewriteToVectorUpdate(std::vector<Model* >& v) const
+	void ModelPart::serialiseF(std::ostream & file, Res::DataScriptSaver & saver) const
 	{
-		v.push_back((Model*)this);
-
-		if (childDown)
-			childDown->rewriteToVectorUpdate(v);
-
-		if (childUp)
-			childUp->rewriteToVectorUpdate(v);
-
-		if (sibling)
-			sibling->rewriteToVectorUpdate(v);
-	}
-
-
-	void Model::setTexture(ResId id)
-	{
-		res.textures[id].setSprite(sp);
-	}
-	/**
-	void Model::addAnimationPart(AnimationPart * s)
-	{
-		parts.push_back(s);
-	}
-
-	void Model::removeAnimationPart(AnimationPart * s)
-	{
-		for(auto it = parts.begin(); it != parts.end(); ++it)
-			if ( *it == s)
-			{
-				parts.erase(it);
-				return;
-			}
-	}/**/
-
-	void Model::serialiseF(std::ostream & file, Res::DataScriptSaver & saver) const
-	{
-		ModelDef::serialiseF(file, saver);
 #ifdef RE_EDITOR
 		/// Only in editor
 		/// TODO
 #endif // RE_EDITOR
 	}
 
-	void Model::deserialiseF(std::istream & file, Res::DataScriptLoader & loader)
+	void ModelPart::deserialiseF(std::istream & file, Res::DataScriptLoader & loader)
 	{
-		ModelDef::deserialiseF(file, loader);
+		baseDef.deserialise(file, loader);
+
 		/// set texture
 		ResId tsId = loader.load("ts", 0);
 		if (tsId != 0)
@@ -149,10 +85,15 @@ namespace Graphics
 		else
 			sp.setTextureRect(sf::IntRect() );
 
+		setOrigin({
+			loader.load<float32>("originX", 0.f),
+			loader.load<float32>("originY", 0.f)
+		});
+
 		DATA_SCRIPT_MULTILINE(file, loader)
 		{
 			string b = loader.load<string>("ud", "down");
-			Model *m = new Model();
+			ModelPart *m = new ModelPart();
 
 			if (b == "up")
 				addUp(m);
@@ -161,5 +102,7 @@ namespace Graphics
 
 			m->deserialise(file, loader);
 		}
+
+		animationDef = baseDef;
 	}
 }

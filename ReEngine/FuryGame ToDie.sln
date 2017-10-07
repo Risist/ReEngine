@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReEngine", "ReEngine\ReEngine.vcxproj", "{9AE9FFBE-4B1F-48E4-8E73-66119FC204B4}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineTests", "EngineTests\EngineTests.vcxproj", "{8FCF5D56-3618-48C2-B9FB-85D21A2D6B32}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9AE9FFBE-4B1F-48E4-8E73-66119FC204B4} = {9AE9FFBE-4B1F-48E4-8E73-66119FC204B4}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor", "Editor\Editor.vcxproj", "{652264FE-3F3B-47CC-9BF8-E4B0746484B5}"
 EndProject
@@ -58,5 +61,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7EABCF0A-3E6B-4350-AFD4-0EEC7107954E}
 	EndGlobalSection
 EndGlobal

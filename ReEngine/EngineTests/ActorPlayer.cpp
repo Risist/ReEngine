@@ -6,15 +6,15 @@ void ActorPlayer::onInit()
 	createInput();
 	
 	
-	auto efModel = addEffect(new Effect::Model("model_reaper.txt"));
+	auto efModel = new Effect::Model("model_reaper.txt");
 	auto animationManager = addEffect(new Effect::AnimationManager(*efModel));
-		
-	animPose = animationManager->insertAnimation("anim_reaperPose.txt");
-	animWalk = animationManager->insertAnimation("anim_reaperWalk.txt");
-	animSlash = animationManager->insertAnimation("anim_reaperSlash.txt");
-	animPush = animationManager->insertAnimation("anim_reaperPush.txt");
-	animPull = animationManager->insertAnimation("anim_reaperPull.txt");
+	addEffect(efModel);
 
+	animationManager->applyPose("anim_reaperPose.txt");
+	animWalk = animationManager->insertAnimation("anim_reaperWalk.txt");
+	//animSlash = animationManager->insertAnimation("anim_reaperSlash.txt");
+	//animPush = animationManager->insertAnimation("anim_reaperPush.txt");
+	animPull = animationManager->insertAnimation("anim_reaperPull.txt");
 	
 	
 	auto efRigidbody = addEffect(new Effect::Rigidbody())
@@ -50,9 +50,10 @@ void ActorPlayer::onUpdate(sf::Time dt)
 	Super::onUpdate(dt);
 
 	if (efMovement->isMoving())
-		animWalk->updateReturn();
-
 	{
+		animWalk->updateReturn();
+	}
+	/*{
 		if (onSlashBack)
 		{
 			if (animSlash->updateTowards(0, 0.75*(0.25 + slashLoaded*0.75)))
@@ -86,7 +87,7 @@ void ActorPlayer::onUpdate(sf::Time dt)
 		if (onPull && animPull->updateRestart())
 			onPull = false;
 	}
-	{
+	/*{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 			onPush = true;
 		if (onPush && animPush->updateRestart())
@@ -100,7 +101,7 @@ void ActorPlayer::onUpdate(sf::Time dt)
 		efMovement->setMovementSpeed(defaultMovementSpeed);
 	else
 		efMovement->setMovementSpeed(defaultMovementSpeed*5.f);
-
+		*/
 }
 
 void ActorPlayer::createInput()

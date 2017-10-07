@@ -15,7 +15,7 @@ namespace Effect
 		SERIALISATION_NAME(AnimationManager)
 	public:
 		/// creates animation manager attached to specific model
-		AnimationManager(vector<Graphics::Model*>* modelsUpdate = nullptr);
+		AnimationManager(vector<Graphics::ModelPart*>* modelsUpdate = nullptr);
 		AnimationManager(Effect::Model& model);
 
 		////// events
@@ -36,16 +36,29 @@ namespace Effect
 		}
 		Graphics::AnimationController* insertAnimation(const char* path)
 		{
-			controllers.push_back(make_unique<Graphics::AnimationController>(path));
+			controllers.push_back(make_unique<Graphics::AnimationController>());
+			controllers.back()->deserialise(path);
 			controllers.back()->attachToModel(*modelsUpdate);	
 			return controllers.back().get();
 		}
-		/*Graphics::AnimationController* insertAnimation(unique_ptr<Graphics::AnimationController> ptr)
+		AnimationManager* applyPose(ResId animationScriptId) 
 		{
-			controllers.push_back(ptr);
-			controllers.back()->attachToModel(*modelsUpdate);
-			return controllers.back().get();
-		}*/
+			Graphics::AnimationController controller;
+			controller.deserialiseFromString(scriptInst[animationScriptId]);
+			controller.attachToModel(*modelsUpdate);
+			controller.applyPose();
+			return this;
+		}
+		AnimationManager* applyPose(const char* path)
+		{
+			Graphics::AnimationController controller;
+			controller.deserialise(path);
+			controller.attachToModel(*modelsUpdate);
+			controller.applyPose();
+			return this;
+		}
+
+
 		AnimationManager* removeAnimation(size_t id)
 		{
 			assert(controllers.size() > id);
@@ -65,7 +78,7 @@ namespace Effect
 		}
 
 
-		AnimationManager* attachToModel(vector<Graphics::Model*>* _modelsUpdate);
+		AnimationManager* attachToModel(vector<Graphics::ModelPart*>* _modelsUpdate);
 		AnimationManager* attachToModel(Effect::Model& model)
 		{
 			attachToModel(&model.modelsUpdate);
@@ -86,11 +99,9 @@ namespace Effect
 	private:
 		/// animations holded and managed in the class
 		vector<unique_ptr<Graphics::AnimationController>> controllers;
-		vector<Graphics::Model*>* modelsUpdate{nullptr};
-
-	/*protected:
-		virtual void serialiseF(std::ostream& file, Res::DataScriptSaver& saver) const override;
-		virtual void deserialiseF(std::istream& file, Res::DataScriptLoader& loader)override;*/
+		
+		/// reference to vectorised model conntrollers are attached to
+		vector<Graphics::ModelPart*>* modelsUpdate{nullptr};
 	};
 
 
