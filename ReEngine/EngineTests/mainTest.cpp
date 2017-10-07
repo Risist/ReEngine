@@ -4,7 +4,6 @@
 
 Clock performanceClock;
 
-
 void init()
 {
 	srand((unsigned int)time(nullptr));

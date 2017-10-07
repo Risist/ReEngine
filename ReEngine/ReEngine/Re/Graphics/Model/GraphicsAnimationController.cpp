@@ -8,15 +8,16 @@ namespace Graphics
 	{
 	}
 
-	AnimationController::AnimationController(const char * path)
-	{
-		deserialise(path);
-	}
-
-	void AnimationController::onUpdateModel(Step_t scale)
+	void AnimationController::onUpdate()
 	{
 		for (auto it : parts)
-			it.onUpdateModel( scale );
+			it.onUpdate();
+	}
+
+	void AnimationController::applyPose() const
+	{
+		for (auto it : parts)
+			it.applyPose();
 	}
 
 	
@@ -26,50 +27,14 @@ namespace Graphics
 		parts.back().step = &step;
 	}
 
-	
-	void AnimationController::attachToModel(Model & model)
-	{
-		vector<Model*> rewritedVector;
-		model.rewriteToVectorUpdate(rewritedVector);
-
-		for (auto&it : parts)
-		{
-			assert(it.modelId < rewritedVector.size());
-			it.defToUpdate = &rewritedVector[it.modelId]->actualDef;
-		}
-	}
-
-	void AnimationController::attachToModel(vector<Model*>& model)
+	void AnimationController::attachToModel(vector<ModelPart*>& model)
 	{
 		for (auto&it : parts)
 		{
 			assert(it.modelId < model.size());
-			it.defToUpdate = &model[it.modelId]->actualDef;
+			it.attachToModel(model[it.modelId]);
 		}
 	}
-	/**/
-	/// helper struct to force zero sonstructor at ModelDef
-	struct Df : public ModelDef
-	{
-		Df() :ModelDef(ModelDef::zero) {}
-	};
-	void AnimationController::insertBackSteps(Step_t min, Step_t max, Step_t initial)
-	{
-		Step_t stepLenght = 1/(max - min);
-		/// sum of steps at min
-		
-		std::map<  int, Df> partsDef;
-
-		for (auto &it : parts)
-			partsDef[it.modelId] += it.getDefAtStep(min) - it.getDefAtStep(initial);
-
-		for (auto &it : partsDef)
-		{
-			addPart(AnimationPart(it.first, it.second *-stepLenght, min, max) );
-			parts.back().stepOffset = -min;
-		}
-	}
-
 	void AnimationController::serialiseF(std::ostream & file, Res::DataScriptSaver & saver) const
 	{
 #ifdef RE_ENGINE
@@ -82,25 +47,38 @@ namespace Graphics
 	{
 		AnimationStep::deserialiseF(file, loader);
 
+		/// here will be saved all the parts to allow to find them by id
+		map<size_t, AnimationPart> modelMap;
+
 		DATA_SCRIPT_MULTILINE(file, loader)
 		{
-			string type = loader.load<string>("type", "part");
+			size_t modelId = loader.load<size_t>("model", 0);
+			
+			ModelDef def;
+			{
+				def.position.x = loader.load("posX", ModelDef::zero.position.x);
+				def.position.y = loader.load("posY", ModelDef::zero.position.y);
 
-			if (type == "part")
-			{
-				addPart(AnimationPart(file, loader));
+				def.scale.x = loader.load("scaleX", ModelDef::zero.scale.x);
+				def.scale.y = loader.load("scaleY", ModelDef::zero.scale.y);
+
+				def.rotation = Degree(loader.load("rot", ModelDef::zero.rotation.asDegree()));
+				def.mineRotation = Degree(loader.load("mineRot", ModelDef::zero.mineRotation.asDegree()));
+
+				def.color.r = loader.load("clR", ModelDef::zero.color.r);
+				def.color.g = loader.load("clG", ModelDef::zero.color.g);
+				def.color.b = loader.load("clB", ModelDef::zero.color.b);
+				def.color.a = loader.load("clA", ModelDef::zero.color.a);
 			}
-			else if( type == "back")
-			{
-				Step_t initial = loader.load("initial", 0.f);
-				Step_t min = loader.load("stepMin", 0.f);
-				Step_t max = loader.load("stepMax", 0.f);
-				insertBackSteps(min, max, initial);
-			}
-			else
-			{
-				cerr << "AnimationController: load type = " << type << " is undefined\n";
-			}
+
+			modelMap[modelId].addKeyStone(def, loader.load<Step_t>("step", 0.f) );
+		}
+
+		for (auto it : modelMap)
+		{
+			it.second.finaliseKeystones();
+			it.second.modelId = it.first;
+			addPart(it.second);
 		}
 	}
 

@@ -1,59 +1,107 @@
 #include <Re\Common\Math\Angle.h>
 #include <Re\Common\Math\Math.h>
 
-const Angle Angle::full = Degree(360);
-const Angle Angle::zero = Degree(0);
-
-Angle::Angle()
-	: degree(0)
+namespace Math
 {
-}
-Angle::Angle(float32 initialAngle)
-	: degree(initialAngle)
-{
-}
+	const Angle Angle::full = Degree(360);
+	const Angle Angle::zero = Degree(0);
 
-Angle Radian(float32 angle)
-{
-	Angle a;
-	a.degree = angle*180.f / (float32)M_PI;
-	return a;
-}
+	Angle::Angle()
+		: degree(0)
+	{
+	}
+	Angle::Angle(float32 initialAngle)
+		: degree(initialAngle)
+	{
+	}
 
-Angle Degree(float32 angle)
-{
-	Angle a;
-	a.degree = angle;
-	return a;
-}
+	Angle Radian(float32 angle)
+	{
+		Angle a;
+		a.degree = angle*180.f / (float32)M_PI;
+		return a;
+	}
 
-Angle Angle::minimalDiffirence(const Angle & other) const
-{
+	Angle Degree(float32 angle)
+	{
+		Angle a;
+		a.degree = angle;
+		return a;
+	}
 
-	float32 diffirence = degree - other.degree;
+	Angle Angle::minimalDiffirence(const Angle & other) const
+	{
 
-	// remainder after division
-	diffirence += -((int)(diffirence / 360)) * 360;
+		float32 diffirence = degree - other.degree;
 
-	if (diffirence > 180) diffirence -= 360;
+		// remainder after division
+		diffirence += -((int)(diffirence / 360)) * 360;
 
-	else if (diffirence < -180) diffirence += 360;
+		if (diffirence > 180) diffirence -= 360;
 
-	/*debug*
-	cout << "myAngle " << myAngle << "\n";
-	cout << "forceAngle " << forceAngle << "\n";
-	cout << "diffirence " << diffirence << "\n";
-	/**/
+		else if (diffirence < -180) diffirence += 360;
 
-	return Degree(diffirence);
-}
+		/*debug*
+		cout << "myAngle " << myAngle << "\n";
+		cout << "forceAngle " << forceAngle << "\n";
+		cout << "diffirence " << diffirence << "\n";
+		/**/
 
-Angle randRange(Angle min, Angle max)
-{
-	return Degree(randRange(min.asDegree(), max.asDegree()));
-}
+		return Degree(diffirence);
+	}
 
-Angle clamp(Angle value, Angle min, Angle max)
-{
-	return Degree(clamp(value.asDegree(), min.asDegree(), max.asDegree()));
+	Angle randRange(Angle min, Angle max)
+	{
+		return Degree(randRange(min.asDegree(), max.asDegree()));
+	}
+
+	Angle clamp(Angle value, Angle min, Angle max)
+	{
+		return Degree(clamp(value.asDegree(), min.asDegree(), max.asDegree()));
+	}
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+	const PrecomputedAngle PrecomputedAngle::full = DegreeP(360);
+	const PrecomputedAngle PrecomputedAngle::zero = DegreeP(0);
+
+
+	PrecomputedAngle RadianP(float32 angle)
+	{
+		return PrecomputedAngle(angle*180.f / (float32)M_PI);
+	}
+
+	PrecomputedAngle DegreeP(float32 angle)
+	{
+		return PrecomputedAngle(angle);
+	}
+
+
+	PrecomputedAngle::PrecomputedAngle(float32 angle)
+		: hasToBeUpdated(true), Angle(angle)
+	{
+	}
+
+	PrecomputedAngle::PrecomputedAngle()
+		: hasToBeUpdated(false), Angle(Angle::zero), sinValue(0), cosValue(1)
+	{
+	}
+
+	PrecomputedAngle::PrecomputedAngle(const Angle & angle)
+		: Angle(angle.asDegree()), hasToBeUpdated(true)
+	{
+	}
+
+
+	PrecomputedAngle randRange(PrecomputedAngle min, PrecomputedAngle max)
+	{
+		return DegreeP(randRange(min.asDegree(), max.asDegree()));
+	}
+
+	PrecomputedAngle clamp(PrecomputedAngle value, Angle min, PrecomputedAngle max)
+	{
+		return DegreeP(clamp(value.asDegree(), min.asDegree(), max.asDegree()));
+	}
+
 }

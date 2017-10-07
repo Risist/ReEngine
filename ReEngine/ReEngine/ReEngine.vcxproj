@@ -179,6 +179,7 @@ $(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
     <ClCompile Include="Re\Common\Control\ControlKey.cpp" />
     <ClCompile Include="Re\Common\Control\ControlMultiKey.cpp" />
     <ClCompile Include="Re\Common\Control\ControlTimer.cpp" />
+    <ClCompile Include="Re\Common\Math\Transform.cpp" />
     <ClCompile Include="Re\Common\Operators.cpp" />
     <ClCompile Include="Re\Common\Math\Angle.cpp" />
     <ClCompile Include="Re\Common\Math\Math.cpp" />
@@ -267,6 +268,7 @@ $(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
     <ClInclude Include="Re\Common\Control\ControlKey.h" />
     <ClInclude Include="Re\Common\Control\ControlMultiKey.h" />
     <ClInclude Include="Re\Common\Control\ControlTimer.h" />
+    <ClInclude Include="Re\Common\Math\Transform.h" />
     <ClInclude Include="Re\Common\Operators.h" />
     <ClInclude Include="Re\Common\Math\Angle.h" />
     <ClInclude Include="Re\Common\Math\Math.h" />
@@ -278,6 +280,7 @@ $(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
     <ClInclude Include="Re\Common\Scripts\ResISerialisable.h" />
     <ClInclude Include="Re\Common\Scripts\ResScripts.h" />
     <ClInclude Include="Re\Common\Settings.h" />
+    <ClInclude Include="Re\Common\Struct\binarytree.h" />
     <ClInclude Include="Re\Common\Struct\ConstantStack.h" />
     <ClInclude Include="Re\Common\utility.h" />
     <ClInclude Include="Re\Game\Effect\Audio\EffectAudioSource.h" />

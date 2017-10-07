@@ -6,163 +6,64 @@
 
 namespace Graphics
 {
-	class AnimationPart;
+	
+	/*
+	Models are divaded into parts. Each individual part is a single image/Sprite/another being
 
-	class Model : 
-		public ModelDef
+	Model is responsible of provide correct ModelDef to every image, then they can interpret the data on its own.
+	Transformable part of ModelPart holds data after transformation (static/animation)
+	*/
+	class ModelPart : 
+		/// tree structure of Models
+		/// childs can be placed above or under this one
+		/// Parent is treated as any Transormable so eg. Actor can be used as one
+		public BinaryTree<ModelPart, Math::Transform>,
+		/// data about current model part placement in the world
+		public Math::Transform,
+		/// the class is serialisable
+		public Res::ISerialisable
 	{
 	public:
-		Model();
-		/// manualy set model
-		Model(ResId tsId, const ModelDef& def);
-		/// load model from path
-		Model(const char* path);
-		Model(ResId scriptId);
+		ModelPart();
 
-		/// display model onto target
-		/// does not draw childrens
-		void drawSingle(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates::Default);
-		/// display model onto target. Draws childrens using recursive calls
-		void drawRecursive(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates::Default);
-		
-		
-		/// Functions to use in vector wise version
-		/// updateAsParent should be called on every model put in vector created by rewriteToVectorUpdate
-		/// then call drawOnly on every object put into vector created by rewriteToVectorRendering
-		void updateAsParent();
-		void drawOnly(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates::Default);
+		void onUpdate(); 
+		void onDraw(sf::RenderTarget& target, sf::RenderStates states);
 
-		/// put pointners to model parts to vector in animation/update order
-		/// i.e.  object -> sibling -> childDown -> childUp
-		void rewriteToVectorUpdate(std::vector<Model* >& v) const;
-		/// put pointners to model parts to vector in rendering order
-		/// i.e. childDown -> object -> sibling -> childUp
-		void rewriteToVectorRendering(std::vector<Model* >& v) const;
+		void applayAnimation(const ModelDef& def);
 
-		/// set texture to the one with id of res.textures
-		void setTexture(ResId id);
+		/// permanently edits model statistics
+		void applayPose(const ModelDef& def)
+		{
+			baseDef += def;
+		}
 
 
-		/// add child above
-		/// pass a pointner to model created by "new Model"
-		void addUp(Model *s)
-		{
-			if (childUp == nullptr)
-			{
-				s->parent = &sp;
-				childUp = unique_ptr<Model>(s);
-			}
-			else
-				childUp->addSibling(s);
-		}
-		/// add child under
-		/// pass a pointner to model created by "new Model"
-		void addDown(Model *s)
-		{
-			if (childDown == nullptr) 
-			{
-				s->parent = &sp;
-				childDown = unique_ptr<Model>(s);
-			}
-			else
-				childDown->addSibling(s);
-		}
 
-		/// getters ///
 
-		Model* getChildUp()
-		{
-			return childUp.get();
-		}
-		Model* getChildDown()
-		{
-			return childDown.get();
-		}
-		Model* getSibling()
-		{
-			return sibling.get();
-		}
+		////// setters
+		void setOrigin(const Vector2D& s) { sp.setOrigin(s + Vector2D(sp.getTextureRect().width*0.5f, sp.getTextureRect().height*0.5f)); }
+		void setTexture(ResId tsId) { tsInst[tsId].setSprite(sp); }
 
-		Model* getChildUp() const
-		{
-			return childUp.get();
-		}
-		Model* getChildDown() const
-		{
-			return childDown.get();
-		}
-		Model* getSibling() const
-		{
-			return sibling.get();
-		}
+		////// getters
+		Vector2D getOrigin() const { return sp.getOrigin(); }
+		Color getColor() const { return sp.getColor(); }
 
-		/// returns actually drawn position
-		Vector2D getPosition() const
-		{
-			return sp.getPosition();
-		}
-		/// returns actually drawn rotation
-		Angle getRotation() const
-		{
-			return Degree(sp.getRotation()) + rotSprite;
-		}
-		/// returns actually drawn scale
-		Vector2D getScale() const
-		{
-			return sp.getScale();
-		}
-		const Texture* getTexture() const
-		{
-			return sp.getTexture();
-		}
-
-		/// transformable model is updated to
-		Transformable* parent;
-		ModelDef actualDef;
-	
-		sf::Sprite& getTransformSprite() { return sp; }
-		const sf::Sprite& getTransformSprite() const { return sp; }
-
- 	protected:
-		/// actual graphical representation of the model
+	private:
 		sf::Sprite sp;
-		/// holded rotation of sprite computed by update function
-		/// for internal usage
-		Angle __rotSprite;
+		using Math::Transform::setPosition;
+		using Math::Transform::setScale;
+		using Math::Transform::setRotation;
 
-		//list<AnimationPart*> parts;
-	protected: /// Double Tree data
-		/// DoubleTree is like standard tree but have two separated childrens
-		/// Those childrens describes the rendering order which is:
-		///		childs down(and their childrens)
-		///		calling model
-		///		childs up(and their childrens)
+	private:
+		ModelDef baseDef;
+		/// animation influences
+		ModelDef animationDef;
 
-		/// adds a sibling to the model
-		/// for internal purposes
-		/// use addUp or addDown instead
-		void addSibling(Model *s)
-		{
-			if (sibling == nullptr)
-			{
-				sibling = unique_ptr<Model>(s);
-				s->parent = parent;
-			}
-			else
-				sibling->addSibling(s);
-		}
-
-		/// child can be placed either above or under
-		/// which child ptr is used determine rendering order
-		std::unique_ptr<Model> childUp, childDown,
-			/// sibling to this model
-			/// shows all models on the same layer
-			/// Rendering order: first this one then siblings
-			sibling;
+		/// how many animationa has been applied
+		size_t appliedAnimationsCount{0};
 
 	protected:
 		virtual void serialiseF(std::ostream& file, Res::DataScriptSaver& saver) const override;
 		virtual void deserialiseF(std::istream& file, Res::DataScriptLoader& loader) override;
 	};
-
-}
+}	

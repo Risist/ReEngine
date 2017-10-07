@@ -1,5 +1,8 @@
 < step = 0; stepMin = 0; stepMax = 350; speed = 5. >
 	
+
+
+<\>	
 	/// 1
 	
 	<model = 4; rotAround = 0.5; stepMax = 120>

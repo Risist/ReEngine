@@ -33,7 +33,7 @@ namespace Effect
 			)
 		);
 
-		Angle desredRot = Degree(updateTarget->getRotation()) + addictionalRotation;
+		Angle desredRot = updateTarget->getRotation() + addictionalRotation;
 		cam.setRotation( 
 				lerp(
 					cam.getRotation(),

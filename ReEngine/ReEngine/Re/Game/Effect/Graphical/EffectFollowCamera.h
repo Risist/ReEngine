@@ -40,7 +40,7 @@ namespace Effect
 			offset = s;
 			return this;
 		}
-		FollowCamera* setUpdateTarget(sf::Transformable* s)
+		FollowCamera* setUpdateTarget(Math::Transform* s)
 		{
 			updateTarget = s;
 			return this;
@@ -55,7 +55,7 @@ namespace Effect
 		Angle addictionalRotation;
 		/// target to which update camera
 		/// default one is Transformable parent
-		sf::Transformable *updateTarget{nullptr};
+		Math::Transform *updateTarget{nullptr};
 	/*protected:
 		virtual void serialiseF(std::ostream&file, Res::DataScriptSaver& saver) const override;
 		virtual void deserialiseF(std::istream&file, Res::DataScriptLoader& loader)override;*/

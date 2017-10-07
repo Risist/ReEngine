@@ -13,36 +13,20 @@ namespace Graphics
 	class ModelDef : public Res::ISerialisable
 	{
 	public: /// functions section
-		
+
 			/// ctors
-		ModelDef(const Vector2D& position = Vector2D(), Angle rot = Angle::zero, 
-			Color_f color = Color_f(), 
+		ModelDef(const Vector2D& position = Vector2D(), Angle rot = Angle::zero,
+			Color_f color = Color_f(),
 			const Vector2D& scale = Vector2D(), Angle rotAround = Angle::zero);
 		ModelDef(std::istream& file, Res::DataScriptLoader& loader) { deserialise(file, loader); }
 
-		/// updates takensprite to modelDef "transform".
-		///		color is nondepended on parent
-		///		position of parent is added to sprite
-		///		rotation of parent rotates transform by some degree
-		///		@pos is rotated by rotAround + parents rotation and added to sprite position 
-		///		
-		void setSprite(sf::Sprite& toUpdate, const sf::Transformable& parent) const;
-		/// version with not parent specyfied
-		void setSprite(sf::Sprite& toUpdate) const;
-
 	public: /// Data section
-		Vector2D pos;
-		Vector2D scale{Vector2D(1,1)};
-		/// rotation of whole model and its childrens
-		Angle rot, 
-		/// offset of rotation around parent, influences position and rotation by the angle
-			rotAround,
-		/// rotation of sprite only
-			rotSprite;
+
+		Vector2D position;
+		Vector2D scale{ Vector2D(1,1) };
 		Color_f color;
-
-
-		Vector2D origin;
+		Angle rotation,
+			mineRotation;
 
 	public: /// operators section
 		ModelDef operator+(const ModelDef& other) const;
@@ -61,7 +45,7 @@ namespace Graphics
 
 	public: /// predefined values section
 
-		/// default ModelDef, not changing sprite at update; to use in Model class
+			/// default ModelDef, not changing sprite at update; to use in Model class
 		static const ModelDef default;
 		/// ModelDef with all values equal to 0; to use in animation class
 		static const ModelDef zero;

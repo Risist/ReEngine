@@ -294,6 +294,12 @@
     <ClInclude Include="Re\Game\Effect\Graphical\EffectDisplayable.h">
       <Filter>Game\Effect\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Re\Common\Struct\binarytree.h">
+      <Filter>Common\struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Re\Common\Math\Transform.h">
+      <Filter>Common\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -595,6 +601,9 @@
     </ClCompile>
     <ClCompile Include="Re\Common\Control\ControlAxis.cpp">
       <Filter>Common\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="Re\Common\Math\Transform.cpp">
+      <Filter>Common\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
