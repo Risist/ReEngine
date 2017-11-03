@@ -19,7 +19,7 @@ namespace Effect
 		}
 
 		/// override
-		virtual bool canBeParent(Base* potentialParent) const override;
+		virtual bool canBeChildOf(Base* potentialParent) const override;
 
 
 	protected:

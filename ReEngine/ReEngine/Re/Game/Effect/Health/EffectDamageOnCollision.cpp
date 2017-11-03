@@ -11,7 +11,7 @@ namespace Effect
 	{
 	}
 
-	bool DamageOnCollision::canBeParent(Base * potentialParent) const
+	bool DamageOnCollision::canBeChildOf(Base * potentialParent) const
 	{
 		return dynamic_cast<Rigidbody*>(potentialParent) && dynamic_cast<Fixture*>(potentialParent);
 	}

@@ -12,7 +12,16 @@ namespace Math
 	class Transform
 	{
 	public:
-		Transform();
+		__forceinline Transform(const Vector2D& _position = Vector2D(), 
+			Angle _rotation = Angle::zero, 
+			const Vector2D& _scale = Vector2D(1.f, 1.f) 
+		)
+			:needToUpdateTransform(true)
+			, scale(_scale)
+			, rotation(_rotation)
+			, position(_position)
+		{
+		}
 
 		Vector2D getPosition() const { return position; }
 		void getPosition(Vector2D& ret) const { ret = position; }

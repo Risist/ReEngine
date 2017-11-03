@@ -8,9 +8,9 @@ namespace Graphics
 	{
 	}
 
-	void AnimationController::onUpdate()
+	void AnimationController::onUpdate() const
 	{
-		for (auto it : parts)
+		for (auto &it : parts)
 			it.onUpdate();
 	}
 

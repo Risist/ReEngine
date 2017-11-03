@@ -52,40 +52,4 @@ namespace Graphics
 	{
 		std::sort(keystones.begin(), keystones.end() );
 	}
-
-	void AnimationPart::serialiseF(std::ostream & file, Res::DataScriptSaver & saver) const
-	{
-		/// TODO
-	}
-	void AnimationPart::deserialiseF(std::istream & file, Res::DataScriptLoader & loader)
-	{
-		modelId = loader.load("model", 0u); 
-		AnimationStepHolder::deserialiseF(file, loader);
-
-		DATA_SCRIPT_MULTILINE(file, loader)
-		{
-			KeyStone keystone;
-			//keystone.desiredDef.deserialise(file, loader);
-			{
-				keystone.desiredDef.position.x = loader.load("posX", ModelDef::zero.position.x);
-				keystone.desiredDef.position.y = loader.load("posY", ModelDef::zero.position.y);
-
-				keystone.desiredDef.scale.x = loader.load("scaleX", ModelDef::zero.scale.x);
-				keystone.desiredDef.scale.y = loader.load("scaleY", ModelDef::zero.scale.y);
-
-				keystone.desiredDef.rotation = Degree(loader.load("rot", ModelDef::zero.rotation.asDegree()));
-				keystone.desiredDef.mineRotation = Degree(loader.load("mineRot", ModelDef::zero.mineRotation.asDegree()));
-
-				keystone.desiredDef.color.r = loader.load("clR", ModelDef::zero.color.r);
-				keystone.desiredDef.color.g = loader.load("clG", ModelDef::zero.color.g);
-				keystone.desiredDef.color.b = loader.load("clB", ModelDef::zero.color.b);
-				keystone.desiredDef.color.a = loader.load("clA", ModelDef::zero.color.a);
-			}
-
-			keystone.step = loader.load<Step_t>("step", 0.f);
-			keystones.push_back(keystone);
-		}
-
-		finaliseKeystones();
-	}
 }

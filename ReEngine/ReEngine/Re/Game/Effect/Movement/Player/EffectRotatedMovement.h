@@ -1,5 +1,5 @@
 #pragma once
-#include <Re\Game\Effect\Movement\EffectMovementAim.h>
+#include <Re\Game\Effect\Movement\Player\EffectStaticMovement.h>
 #include <Re\Common\Control\ControlMouseDrag.h>
 
 namespace Effect
@@ -8,64 +8,38 @@ namespace Effect
 	/// TODO
 
 	/// efect that allows to move player forward, backward, strife, and rotate by moving mouse in x axes
-	/*class RotatedMovement : public Base
+	class RotatedMovement : public StaticMovement
 	{
+		SERIALISATION_NAME(RotatedMovement)
 	public:
-		enum UpdateMode
+		RotatedMovement(float32 movementSpeedMax = 1.f);
+
+		/// events
+
+		virtual void onUpdate(sf::Time dt) override;	
+
+		/// setters
+		RotatedMovement* setLockRadius(Vector2D& v)
 		{
-			none,		//< dont update
-			toTransform,	//< update by changing transform
-			toRigidbody,	//< update by applying forces (warring! rigidbody is required! )
-		}
-			updateModePosition {toRigidbody},
-			updateModeRotation {toRigidbody};
-
-		RotatedMovement(float32 linearSpeed,
-			float32 angularSpeed);
-
-		virtual void onUpdate(sf::Time dt) override;
-
-		RotatedMovement* setKeys(string _codeUp,string _codeDown,
-			string _codeLeft,string _codeRight)
-		{
-			codeUp = _codeUp;
-			codeDown = _codeDown;
-			codeLeft = _codeLeft;
-			codeRight = _codeRight;
+			lockRadius = v;
 			return this;
 		}
-		RotatedMovement* setModes(UpdateMode positionMode, UpdateMode rotationMode)
+		REDEFINE_SETTER_2(RotatedMovement, setAxis, const string&, const string&);
+
+		/// getters
+		Vector2D getLockRadius() const
 		{
-			updateModePosition = positionMode;
-			updateModeRotation = rotationMode;
-			return this;
-		}
-		RotatedMovement* setModes(UpdateMode wholeMode)
-		{
-			updateModePosition = wholeMode;
-			updateModeRotation = wholeMode;
-			return this;
+			return lockRadius;
 		}
 
-		RotatedMovement* setAngularForceMax(float32 s)
-		{
-			angularForceMax = s * 1000;
-			return this;
-		}
-
-		float32 linearSpeed;
-		float32 angularSpeed, angularForceMax;
-
-		string codeUp{ "up" }, codeDown{ "down" }, codeLeft{ "left" }, codeRight{"right"};
-
-
+	protected:
 		/// radius in which mouse will be locked onto screan
 		/// if is in [0,lockRadius] or [wnd - lockRadius, wnd]
 		/// then mouse is swaped in other side
 		/// this ensures ability to continued movement of mouse while rotating
-		Vector2D lockRadius{5,5};
-	protected:
+		Vector2D lockRadius{ 5,5 };
+	private:
 		Control::MouseDrag drag;
-	};*/
+	};
 
 }

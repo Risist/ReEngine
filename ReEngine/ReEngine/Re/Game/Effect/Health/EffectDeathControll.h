@@ -15,7 +15,7 @@ namespace Effect
 
 		////// events
 
-		virtual bool canBeParent(Base* potential) const override;
+		virtual bool canBeChildOf(Base* potential) const override;
 
 		/// reset timer
 		virtual void onDeath() override;
@@ -46,7 +46,7 @@ namespace Effect
 
 		////// events
 
-		virtual bool canBeParent(Base* potential) const override;
+		virtual bool canBeChildOf(Base* potential) const override;
 
 		/// reset timer
 		virtual void onRespawn() override;
@@ -82,7 +82,7 @@ namespace Effect
 			function<bool(Game::Actor&,b2Contact&)> canDie = [](Game::Actor& other, b2Contact& collision) {return true; });
 
 		////// events
-		virtual bool canBeParent(Base* potential) const override;
+		virtual bool canBeChildOf(Base* potential) const override;
 
 		virtual void onCollisionEnter(Game::Actor& other, b2Contact& collision) override;
 		virtual void onCollisionExit(Game::Actor& other, b2Contact& collision) override;

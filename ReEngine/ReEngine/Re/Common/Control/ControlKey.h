@@ -42,9 +42,13 @@ namespace Control
 		/// constructor of mouse button
 		Key(sf::Mouse::Button button, EPressState _desiredState);
 
-
-
-		/// 
+		/// resets amortisation key state
+		/// should be called every frame
+		void reset();
+		/// key check with amortisation
+		/// if the same Control::Key is used in many places result is computed only once. 
+		/// but you should call reset before every frame.
+		/// @return if the key represented by the class is in required state
 		bool isReady() const;
 		/// tells whether key was pressed - without lookong on desired state
 		bool isReadySimple() const;
@@ -86,6 +90,11 @@ namespace Control
 		EDevice device = EDevice::invalid;
 
 		mutable uint8 isPressed : 1;
+		
+		/// amortisation allows to reduce computations needed to gain key press state
+		/// in case of using the same key in multiplay places this allows to compute key state only once
+		mutable uint8 wasAmortized :  1;
+		mutable uint8 amortizedResult : 1;
 		
 		/// serialisation helper functions
 		static const char* fromCodeToString(sf::Keyboard::Key key);

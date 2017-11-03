@@ -1,12 +1,13 @@
 #pragma once
 #include <Re\Ai\Mind\AiMind.h>
-#include <Re\Game\Efect\EfectBase.h>
+#include <Re\Game\Effect\EffectBase.h>
 
-namespace Efect
+namespace Effect
 {
 
 	class Mind : public Base
 	{
+		SERIALISATION_NAME(Mind)
 	public:
 
 		virtual void onUpdate(sf::Time dt) override;
@@ -46,7 +47,7 @@ namespace Efect
 			return mind.getFromMemory(pastTime);
 		}
 
-
+	private:
 		Ai::Mind mind;
 	};
 }

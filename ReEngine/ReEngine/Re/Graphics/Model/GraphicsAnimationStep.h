@@ -4,6 +4,7 @@
 #include <Re\Common\Math\Math.h>
 #include <limits>
 
+
 namespace Graphics
 {
 	/// type for Animation Step counting purpose

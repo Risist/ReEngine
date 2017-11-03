@@ -33,4 +33,5 @@
 #include <Re\Game\Effect\Movement\Player\EffectMouseMovement.h> 
 #include <Re\Game\Effect\Movement\Player\EffectStaticMovement.h> 
 #include <Re\Game\Effect\Movement\Player\EffectRadiusMovement.h> 
+#include <Re\Game\Effect\Movement\Player\EffectRotatedMovement.h> 
 

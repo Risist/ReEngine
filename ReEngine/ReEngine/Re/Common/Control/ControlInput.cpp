@@ -1,7 +1,15 @@
-#include <Re\Game\InputController.h>
+#include <Re\Common\Control\ControlInput.h>
 
-namespace Game
+namespace Control
 {
+	InputController input;
+
+	void InputController::update() const
+	{
+		for (auto it = keys.begin(); it != keys.end(); ++it)
+			it->second->reset();
+	}
+
 	void InputController::serialiseF(std::ostream & file, Res::DataScriptSaver & saver) const
 	{
 		saver.nextLine(file);
@@ -10,11 +18,11 @@ namespace Game
 		do
 		{
 			saver.save<std::string>("keyName", it->first);
-			it->second->serialise(file,saver);
+			it->second->serialise(file, saver);
 
 			++it;
 		}
-		DATA_SCRIPT_MULTILINE_SAVE(file, saver, it != keys.end() );
+		DATA_SCRIPT_MULTILINE_SAVE(file, saver, it != keys.end());
 	}
 	void InputController::deserialiseF(std::istream & file, Res::DataScriptLoader & loader)
 	{

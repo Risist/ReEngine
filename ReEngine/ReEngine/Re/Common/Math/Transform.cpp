@@ -1,10 +1,5 @@
 #include "Transform.h"
 
-Math::Transform::Transform()
-	:needToUpdateTransform(true), scale(1,1)
-{
-}
-
 void Math::Transform::updateTransform() const
 {
 	if (needToUpdateTransform)

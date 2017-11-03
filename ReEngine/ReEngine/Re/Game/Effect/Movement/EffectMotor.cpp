@@ -8,7 +8,7 @@ namespace Effect
 	{
 	}
 
-	bool Motor::canBeParent(Base * potential) const
+	bool Motor::canBeChildOf(Base * potential) const
 	{
 		return dynamic_cast<Game::Actor*>(potential);
 	}

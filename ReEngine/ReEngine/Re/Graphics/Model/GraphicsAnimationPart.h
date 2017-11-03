@@ -7,8 +7,7 @@ namespace Graphics
 	class ModelPart;
 
 	class AnimationPart :
-		public AnimationStepHolder,
-		public Res::ISerialisable
+		public AnimationStepHolder
 	{
 	public:
 
@@ -56,9 +55,6 @@ namespace Graphics
 		/// call this when al the keystones are added
 		/// sorts them by step;
 		void finaliseKeystones();
-		
-		virtual void serialiseF(std::ostream& file, Res::DataScriptSaver& saver) const override;
-		virtual void deserialiseF(std::istream& file, Res::DataScriptLoader& loader) override;
 	};
 
 }

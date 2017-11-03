@@ -18,7 +18,7 @@ namespace Effect
 
 	public: /// events
 
-		virtual bool canBeParent(Base * potentialParent) const override;
+		virtual bool canBeChildOf(Base * potentialParent) const override;
 		virtual void onUpdate(sf::Time dt) override;
 
 	public:

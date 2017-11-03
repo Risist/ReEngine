@@ -16,7 +16,7 @@ namespace Effect
 		attachToModel(model);
 	}
 
-	bool AnimationManager::canBeParent(Base * potentialParent) const
+	bool AnimationManager::canBeChildOf(Base * potentialParent) const
 	{
 		return dynamic_cast<Game::Actor*>(potentialParent);
 	}

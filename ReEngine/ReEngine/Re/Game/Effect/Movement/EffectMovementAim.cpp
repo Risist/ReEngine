@@ -9,7 +9,7 @@ namespace Effect
 	{
 	}
 
-	bool MovementAim::canBeParent(Effect::Base * potentialParent) const
+	bool MovementAim::canBeChildOf(Effect::Base * potentialParent) const
 	{
 		return dynamic_cast<Rigidbody*>(potentialParent);
 	}

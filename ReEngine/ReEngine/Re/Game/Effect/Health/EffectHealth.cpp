@@ -9,7 +9,7 @@ namespace Effect
 	{
 	}
 
-	bool Health::canBeParent(Base * potentialParent) const
+	bool Health::canBeChildOf(Base * potentialParent) const
 	{
 		return dynamic_cast<Game::Actor*>(potentialParent);
 	}

@@ -44,6 +44,8 @@ namespace Gui
 	}
 	void Button::onUpdate(sf::RenderTarget & target, sf::RenderStates states)
 	{
+		shortKey.reset(); mouseKey.reset();
+
 		sh.setPosition(getActualPosition());
 
 		bool mouseOn = isMouseOnWindow();
@@ -59,17 +61,17 @@ namespace Gui
 			}
 
 			sh.setFillColor(statePressed.cl);
-			statePressed.ts.setRectShape(sh);
+			statePressed.ts.set(sh);
 		}
 		else if (mouseOn)
 		{
 			sh.setFillColor(stateMouseOn.cl);
-			stateMouseOn.ts.setRectShape(sh);
+			stateMouseOn.ts.set(sh);
 		}
 		else
 		{
 			sh.setFillColor(stateMouseOut.cl);
-			stateMouseOut.ts.setRectShape(sh);
+			stateMouseOut.ts.set(sh);
 		}
 
 		target.draw(sh, states);

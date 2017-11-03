@@ -4,30 +4,38 @@ extern RenderWindow wnd;
 namespace Control
 {
 	
-	Key::Key() : isPressed(false)
+	Key::Key() : isPressed(false), wasAmortized(false)
 	{
 	}
-	Key::Key(sf::Keyboard::Key key) : isPressed(false)
+	Key::Key(sf::Keyboard::Key key) : isPressed(false), wasAmortized(false)
 	{
 		setKeyCode(key);
 	}
-	Key::Key(sf::Mouse::Button button) : isPressed(false)
+	Key::Key(sf::Mouse::Button button) : isPressed(false), wasAmortized(false)
 	{
 		setKeyCode(button);
 	}
-	Key::Key(sf::Keyboard::Key key, EPressState _desiredState) : isPressed(false), desiredState(_desiredState)
+	Key::Key(sf::Keyboard::Key key, EPressState _desiredState) : isPressed(false), desiredState(_desiredState), wasAmortized(false)
 	{
 		setKeyCode(key);
 	}
-	Key::Key(sf::Mouse::Button button, EPressState _desiredState) : isPressed(false), desiredState(_desiredState)
+	Key::Key(sf::Mouse::Button button, EPressState _desiredState) : isPressed(false), desiredState(_desiredState), wasAmortized(false)
 	{
 		setKeyCode(button);
+	}
+
+	void Key::reset()
+	{
+		wasAmortized = false;
 	}
 
 	///////////////////////////////
 	bool Key::isReady() const
 	{
-		if (!wnd.hasFocus())
+		if (wasAmortized)
+			return amortizedResult;
+
+		if (!wnd.hasFocus() )
 			return false;
 
 		uint8 lastStatePressed = isPressed;
@@ -49,16 +57,20 @@ namespace Control
 		switch (desiredState)
 		{
 		case EPressState::pressedOnce:
-			return !lastStatePressed && isPressed;
+			amortizedResult = !lastStatePressed && isPressed;
+			break;
 		case EPressState::hold:
-			return isPressed;
+			amortizedResult = isPressed;
+			break;
 		case EPressState::released:
-			return lastStatePressed && !isPressed;
+			amortizedResult = lastStatePressed && !isPressed;
+			break;
 		default:
 			break;
 		}
 
-		return false;
+		wasAmortized = true;
+		return amortizedResult;
 	}
 
 	bool Key::isReadySimple() const

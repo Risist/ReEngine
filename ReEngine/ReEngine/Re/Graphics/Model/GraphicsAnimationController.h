@@ -10,7 +10,7 @@ namespace Graphics
 		
 		/// call this on every frame before model update/ after drawing
 		/// applies animations from the conntroller to model
-		void onUpdate();
+		void onUpdate() const;
 
 		/// permanently edits model state by actual animation data
 		void applyPose() const;

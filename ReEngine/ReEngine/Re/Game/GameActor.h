@@ -1,7 +1,6 @@
 #pragma once
 #include <Re\Game\Effect\EffectBase.h>
 #include <Re\Game\Effect\EffectTransformable.h>
-#include <Re\Game\InputController.h>
 
 namespace Effect
 {
@@ -21,48 +20,6 @@ namespace Game
 
 		Actor();
 		virtual ~Actor() = default;
-
-	public:
-		/// if actor is a player there is his input managament system
-
-		Actor* createPlayerInput()
-		{
-			inputController = make_unique<InputController>();
-			return this;
-		}
-		Actor* setInputKey(const string& code, Control::MultiKey* key)
-		{
-			inputController->setKey(code, key);
-			return this;
-		}
-		Control::MultiKey* getInputKey(const string& name)
-		{
-			return inputController->getKey(name);
-		}
-		bool hasInput() const { return inputController.get(); }
-
-		Actor* setInputAxis(const string& code, Control::Axis* axis)
-		{
-			inputController->setAxis(code, axis);
-			return this;
-		}
-		Actor* setInputAxis(const string& code, const string& positiveKey, const string& negativeKey)
-		{
-			inputController->setAxis(code, 
-				new Control::AxisKey( 
-					inputController->getKey(positiveKey), 
-					inputController->getKey(negativeKey)
-				)
-			);
-			return this;
-		}
-		Control::Axis* getInputAxis(const string& name)
-		{
-			return inputController->getAxis(name);
-		}
-
-	private:
-		std::unique_ptr<InputController> inputController;
 
 	public:
 		/// name of the actor, a way to identify it in runtime

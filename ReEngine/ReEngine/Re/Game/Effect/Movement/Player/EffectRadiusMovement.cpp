@@ -7,11 +7,11 @@ extern RenderWindow wnd;
 namespace Effect
 {
 	
-	/*
-	RadiusMovement::RadiusMovement(float32 _movementSpeed)
-		: MovementAim(_movementSpeed)
+	
+	RadiusMovement::RadiusMovement(float32 _movementSpeedMax)
+		: MovementAim(_movementSpeedMax), movementSpeedMax(_movementSpeedMax)
 	{
-		setMinimalDistance(0.f);
+		setMinimalDistance(200.f);
 	}
 
 	void RadiusMovement::onInit()
@@ -22,43 +22,21 @@ namespace Effect
 	}
 	void RadiusMovement::onUpdate(sf::Time dt)
 	{
-		/// do not move character if wnd has no focus
-		if (wnd.hasFocus() == false)
+		if (wnd.hasFocus())
 		{
-			lastMovementSpeedModificator = 0;
-			return;
+			setDestination(cam.mapPixelToCoords(sf::Mouse::getPosition(wnd)));
+
+			setMovementSpeed(clamp(
+				( getInfluence().getLenght() - getMinimalDistance())
+					/ movementRadiusMax
+					, 0.f, movementSpeedMax)
+				* movementSpeedMax );
+		}
+		else
+		{
+			setMovementSpeed(0);
 		}
 
-
-		setDestination(cam.mapPixelToCoords(sf::Mouse::getPosition(wnd)));
-
-
-		/// check if influence is strong enough
-		if (influence.getLenghtSq() <= minimalDistance*minimalDistance)
-		{
-			/// stored influence is too low
-			stop();
-		}
-
-		/// execute movement
-		if (bAtMove)
-		{
-
-			Vector2D infNorm = getInfluence();
-
-			float32 toMouseRadius = sqrt(influence.getLenghtSq());
-			/// normalize
-			infNorm /= toMouseRadius;
-
-			toMouseRadius = clamp(toMouseRadius, getMovementRadius(), getMovmentRadiusMax());
-			lastMovementSpeedModificator = (toMouseRadius - getMovementRadius()) / (movementRadiusMax - getMovementRadius());
-
-
-			updatePosition(dt, infNorm*toMouseRadius);
-			updateRotation(dt, influence);
-
-			influence *= influenceFall;
-		}
-
-	}*/
+		Super::onUpdate(dt);
+	}
 }

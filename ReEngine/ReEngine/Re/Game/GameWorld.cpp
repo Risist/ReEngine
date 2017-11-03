@@ -27,7 +27,9 @@ namespace Game
 
 	void World::clear()
 	{
+		physicsWorld.SetContactListener(nullptr);
 		actors.clear();
+		physicsWorld.SetContactListener(this);
 		actorsToAdd.clear();
 		displayLayers.clear();
 
@@ -52,13 +54,16 @@ namespace Game
 		actorsToAdd.clear();
 		
 
+		
+
 		/// main actors update
-		for (auto it = actors.begin(); it != actors.end();)
+		auto it = actors.begin();
+		while(it != actors.end())
 		{
 			Actor* actorIt = it->get();
-			
-			if(actorIt->onFrame(dt))
-				actors.erase(it++);
+
+			if (actorIt->onFrame(dt))
+				it = actors.erase(it);
 			else
 				++it;
 		}

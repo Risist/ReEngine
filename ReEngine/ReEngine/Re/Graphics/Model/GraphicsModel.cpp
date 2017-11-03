@@ -12,21 +12,13 @@ namespace Graphics
 	void ModelPart::applayAnimation(const ModelDef& def)
 	{
 		animationDef += def;
-		++appliedAnimationsCount;
 	}
 
 	void ModelPart::onUpdate()
 	{
 		assert(getParent());
 		
-		ModelDef actualDef = baseDef;
-		
-		if(appliedAnimationsCount != 0)
-		{
-			float32 divisor = 1.f / (float32)appliedAnimationsCount;
-			animationDef *= divisor;
-			actualDef+=animationDef;
-		}	
+		ModelDef actualDef = baseDef + animationDef;
 
 		setScale(actualDef.scale * getParent()->getScale());
 		
@@ -40,7 +32,6 @@ namespace Graphics
 		setRotation(getParent()->getRotation() + actualDef.rotation);
 
 		/// reset animation Count
-		appliedAnimationsCount = 0;
 		animationDef = actualDef;
 	}
 	

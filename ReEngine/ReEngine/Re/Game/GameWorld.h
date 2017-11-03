@@ -30,12 +30,35 @@ namespace Game
 		/// @param:dt		time elapsed between frames
 		void onFrame(sf::Time dt);
 
+
+	public:
 		/// creates new actor and then adds to world actor list
 		template<class Act = Game::Actor>
 		Act* createActor();
 
+		/// creates new actor and spawns it on the position taken as an argument
+		template<class Act = Game::Actor>
+		Act* createActor(const Math::Transform& relativeTo, float32 offset, Angle angle = Angle::zero);
+
+		/// creates new actor and spawns it on the transform location taken as arguments
+		template<class Act = Game::Actor>
+		Act* createActor(const Vector2D& position, Angle rotation = Angle::zero );
+
+		/// creates new actor and spawns it on the transform location taken as argument
+		template<class Act = Game::Actor>
+		Act* createActor(Math::Transform& newTransform)
+		{
+			return createActor<Act>(newTransform.getPosition(), newTransform.rotation);
+		}
+
+		/// insertts an actor created somewhere else
+		/// @Warring soon creation of actors will be able only from World class
+		///		purpose of the function will be only for respawning released world members
 		template<class Act = Game::Actor>
 		Act* insertActor( Act* _new);
+
+		/// TODO releaseActor - function/mechanism which returns ptr to actor and removes it from world actor list
+		/// to be able to insert the actor again - performance
 
 	public:
 		void debugDisplayPhysics(Color clNotColliding, Color clColliding);
@@ -43,8 +66,16 @@ namespace Game
 		/// removes all actors from the world
 		void clear();
 
-		///
-		void queryAABB(const Vector2D& loverBound, const Vector2D& upperBound, function<bool(b2Fixture*)> callback);
+		/// callback function to detect all physical bodies within passed as an argument AABB
+		/// @param lowerBounds, upperBounds : vectors whic describes an area to check
+		/// @param callback : function which will take acton on every fixture found
+		///			returns false to stop futher checking for other fixtures
+		void queryAABB(const Vector2D& lowerBound, const Vector2D& upperBound, function<bool(b2Fixture*)> callback);
+		/// sends ray from p1 to p2 and calls function on every fixture on the way
+		/// @param p1, p2 : describes ray, from p1 to p2
+		/// @param callback: calls the function on every actor found on the way of ray.
+		///			@return -1 to filter, 0 to terminate, fraction to clip the ray for
+		///			closest hit, 1 to continue
 		void raycast(const Vector2D& p1, const Vector2D& p2, function<float32(const RaycastResult&)> callback);
 		
 		/// creates new display layer
@@ -54,6 +85,7 @@ namespace Game
 			displayLayers.push_back(make_unique<Layer>());
 			return displayLayers.back().get();
 		}
+		/// returns layer described by an id
 		Layer* getDisplayLayerById(size_t id) const
 		{
 			assert(displayLayers.size() > id);
@@ -94,6 +126,25 @@ namespace Game
 		Act* _new = new Act();
 		return insertActor<Act>(_new);
 	}
+	template<class Act>
+	inline Act * World::createActor(const Math::Transform & relativeTo, float32 offset, Angle angle)
+	{
+		Angle a = angle + relativeTo.getRotation();
+		return createActor<Act>( relativeTo.getPosition() + offset.getRotated(a), a);
+	}
+	template<class Act>
+	inline Act * World::createActor(const Vector2D& position, Angle rotation)
+	{
+		auto ac = createActor<Act>();
+		if (ac->getRigidbody())
+			ac->getRigidbody()->SetTransform(position*toB2Position, rotation.asRadian());
+		
+		ac->setPosition(position);
+		ac->setRotation(rotation);
+		return ac;
+	}
+
+
 	template<class Act>
 	inline Act * World::insertActor(Act * _new)
 	{

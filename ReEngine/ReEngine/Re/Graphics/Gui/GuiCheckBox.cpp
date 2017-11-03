@@ -11,6 +11,8 @@ namespace Gui
 
 	void Gui::CheckBox::onUpdate(RenderTarget & target, RenderStates states)
 	{
+		shortKey.reset(); mouseKey.reset();
+
 		sh.setPosition(getActualPosition());
 
 		bool mouseOn = isMouseOnWindow();
@@ -23,18 +25,18 @@ namespace Gui
 			value = !value;
 
 			sh.setFillColor(statePressed.cl);
-			statePressed.ts.setRectShape(sh);
+			statePressed.ts.set(sh);
 		}
 
 		if (value)
 		{
 			sh.setFillColor(statePressed.cl);
-			statePressed.ts.setRectShape(sh);
+			statePressed.ts.set(sh);
 		}
 		else
 		{
 			sh.setFillColor(stateMouseOut.cl);
-			stateMouseOut.ts.setRectShape(sh);
+			stateMouseOut.ts.set(sh);
 		}
 
 		target.draw(sh, states);

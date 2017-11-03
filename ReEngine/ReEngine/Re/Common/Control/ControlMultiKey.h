@@ -28,13 +28,16 @@ namespace Control
 			addKey(Key(code, state));
 		}
 
+		void reset();
+
 		bool isReady() const;
 		bool isReadySimple() const;
 
 		/// adds new key activating this multikey
-		void addKey( const Control::Key& s)
+		MultiKey* addKey( const Control::Key& s)
 		{
 			keys.push_back(s);
+			return this;
 		}
 	private:
 		vector<Control::Key> keys;

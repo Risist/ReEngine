@@ -17,6 +17,9 @@
     <Filter Include="States\Gameplay">
       <UniqueIdentifier>{d03ba9c9-5c39-4959-9ff5-f7862e04e482}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Fury">
+      <UniqueIdentifier>{5df2782e-45b4-4f19-a4c9-bc1a8521feb4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Layers.cpp" />
@@ -28,6 +31,9 @@
       <Filter>States\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="StateGameplay.cpp">
+      <Filter>States\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
       <Filter>States\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,6 +86,21 @@
     <Text Include="model_reaper.txt">
       <Filter>Resource Files\reaper</Filter>
     </Text>
+    <Text Include="model_fury.txt">
+      <Filter>Resource Files\Fury</Filter>
+    </Text>
+    <Text Include="anim_slashX.txt">
+      <Filter>Resource Files\Fury</Filter>
+    </Text>
+    <Text Include="anim_slashY.txt">
+      <Filter>Resource Files\Fury</Filter>
+    </Text>
+    <Text Include="anim_spellCast.txt">
+      <Filter>Resource Files\Fury</Filter>
+    </Text>
+    <Text Include="model_obstacle.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Layers.h" />
@@ -90,6 +111,9 @@
       <Filter>States\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="StateGameplay.h">
+      <Filter>States\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
       <Filter>States\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>

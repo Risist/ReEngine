@@ -170,11 +170,11 @@ $(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
     <ClCompile Include="Re\Ai\Mind\AiBehaviours.cpp" />
     <ClCompile Include="Re\Ai\Mind\AiBehavioursEvaluate.cpp" />
     <ClCompile Include="Re\Ai\Mind\AiMind.cpp" />
-    <ClCompile Include="Re\Ai\Sense\Filters\SenseFilterCircle.cpp" />
-    <ClCompile Include="Re\Ai\Sense\Filters\SenseFilterCone.cpp" />
-    <ClCompile Include="Re\Ai\Sense\Queries\SenseBestQuery.cpp" />
-    <ClCompile Include="Re\Ai\Sense\SenseHolder.cpp" />
+    <ClCompile Include="Re\Ai\Sense\AiSenseBasic.cpp" />
+    <ClCompile Include="Re\Ai\Sense\Filters\AiSenseFilters.cpp" />
+    <ClCompile Include="Re\Ai\Sense\SenseType\AiSenseTypes.cpp" />
     <ClCompile Include="Re\Common\Control\ControlAxis.cpp" />
+    <ClCompile Include="Re\Common\Control\ControlInput.cpp" />
     <ClCompile Include="Re\Common\Control\ControlMouseDrag.cpp" />
     <ClCompile Include="Re\Common\Control\ControlKey.cpp" />
     <ClCompile Include="Re\Common\Control\ControlMultiKey.cpp" />
@@ -186,6 +186,7 @@ $(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
     <ClCompile Include="Re\Common\Math\Vector2D.cpp" />
     <ClCompile Include="Re\Common\RandomChance.cpp" />
     <ClCompile Include="Re\Common\Settings.cpp" />
+    <ClCompile Include="Re\Game\Effect\Ai\EffectHearingSense.cpp" />
     <ClCompile Include="Re\Game\Effect\Audio\EffectAudioSource.cpp" />
     <ClCompile Include="Re\Game\Effect\effects.cpp" />
     <ClCompile Include="Re\Game\Effect\EffectBase.cpp" />
@@ -210,7 +211,6 @@ $(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
     <ClCompile Include="Re\Game\Effect\Physics\PhysicsDefs.cpp" />
     <ClCompile Include="Re\Game\GameActor.cpp" />
     <ClCompile Include="Re\Game\GameWorld.cpp" />
-    <ClCompile Include="Re\Game\InputController.cpp" />
     <ClCompile Include="Re\Game\State\GameState.cpp" />
     <ClCompile Include="Re\Game\State\GameStateLambda.cpp" />
     <ClCompile Include="Re\Game\State\GameStateManager.cpp" />
@@ -232,6 +232,7 @@ $(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
     <ClCompile Include="Re\Graphics\Model\GraphicsAnimationController.cpp" />
     <ClCompile Include="Re\Graphics\Model\GraphicsAnimationPart.cpp" />
     <ClCompile Include="Re\Graphics\Model\GraphicsAnimationStep.cpp" />
+    <ClCompile Include="Re\Graphics\Model\GraphicsMetaAnimation.cpp" />
     <ClCompile Include="Re\Graphics\Model\GraphicsModel.cpp" />
     <ClCompile Include="Re\Graphics\Model\GraphicsModelDef.cpp" />
     <ClCompile Include="Re\Graphics\ResourceManager.cpp" />
@@ -256,12 +257,12 @@ $(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
     <ClInclude Include="Re\Ai\Mind\AiBehavioursEvaluate.h" />
     <ClInclude Include="Re\Ai\Mind\AiBehaviours.h" />
     <ClInclude Include="Re\Ai\Mind\AiMind.h" />
-    <ClInclude Include="Re\Ai\Sense\Filters\SenseFilterCircle.h" />
-    <ClInclude Include="Re\Ai\Sense\Filters\SenseFilterCone.h" />
-    <ClInclude Include="Re\Ai\Sense\Queries\SenseBestQuery.h" />
-    <ClInclude Include="Re\Ai\Sense\sense.h" />
-    <ClInclude Include="Re\Ai\Sense\SenseFilterBase.h" />
-    <ClInclude Include="Re\Ai\Sense\SenseHolder.h" />
+    <ClInclude Include="Re\Ai\Navigation\AiNavigation.h" />
+    <ClInclude Include="Re\Ai\Sense\AiSenseBasic.h" />
+    <ClInclude Include="Re\Ai\Sense\Filters\AiSenseFilters.h" />
+    <ClInclude Include="Re\Ai\Sense\SenseType\AiSenseType.h" />
+    <ClInclude Include="Re\Ai\Sense\SenseType\AiSenseTypes.h" />
+    <ClInclude Include="Re\Common\Control\ControlInput.h" />
     <ClInclude Include="Re\Common\Control\ControlMouseDrag.h" />
     <ClInclude Include="Re\Common\Control\Control.h" />
     <ClInclude Include="Re\Common\Control\ControlAxis.h" />
@@ -283,6 +284,7 @@ $(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
     <ClInclude Include="Re\Common\Struct\binarytree.h" />
     <ClInclude Include="Re\Common\Struct\ConstantStack.h" />
     <ClInclude Include="Re\Common\utility.h" />
+    <ClInclude Include="Re\Game\Effect\Ai\EffectHearingSense.h" />
     <ClInclude Include="Re\Game\Effect\Audio\EffectAudioSource.h" />
     <ClInclude Include="Re\Game\Effect\EffectBase.h" />
     <ClInclude Include="Re\Game\Effect\EffectLambda.h" />
@@ -309,7 +311,6 @@ $(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
     <ClInclude Include="Re\Game\GameActor.h" />
     <ClInclude Include="Re\Game\GameLayer.h" />
     <ClInclude Include="Re\Game\GameWorld.h" />
-    <ClInclude Include="Re\Game\InputController.h" />
     <ClInclude Include="Re\Game\State\GameState.h" />
     <ClInclude Include="Re\Game\State\GameStateLambda.h" />
     <ClInclude Include="Re\Game\State\GameStateManager.h" />
@@ -333,6 +334,7 @@ $(SolutionDir)\External\Box2D-master\Box2D\Lib;%(AdditionalLibraryDirectories)
     <ClInclude Include="Re\Graphics\Model\GraphicsAnimationController.h" />
     <ClInclude Include="Re\Graphics\Model\GraphicsAnimationPart.h" />
     <ClInclude Include="Re\Graphics\Model\GraphicsAnimationStep.h" />
+    <ClInclude Include="Re\Graphics\Model\GraphicsMetaAnimation.h" />
     <ClInclude Include="Re\Graphics\Model\GraphicsModel.h" />
     <ClInclude Include="Re\Graphics\Model\GraphicsModelDef.h" />
     <ClInclude Include="Re\Graphics\ResourceManager.h" />

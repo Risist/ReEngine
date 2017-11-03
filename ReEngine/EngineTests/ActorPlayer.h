@@ -13,24 +13,10 @@ public:
 	Effect::Model *efModel{nullptr};
 	Effect::MovementAim *efMovement{ nullptr };
 
-	////// animations
-	Graphics::AnimationController* animPose{ nullptr };
-	Graphics::AnimationController* animGreatSlash{ nullptr };
-	Graphics::AnimationController* animPull{ nullptr };
-	Graphics::AnimationController* animPush{ nullptr };
-	Graphics::AnimationController* animWalk{ nullptr };
-	Graphics::AnimationController* animSlash{ nullptr };
-private:
-	void createInput();
 
-	/// slash
-	float32 slashLoaded{0};
-	bool onSlash{ false }, onSlashBack{ false };
-	bool onPull{ false }, onPush{ false };
+	Graphics::AnimationController *animSpellCast;
+	bool onCastingSpeel{false};
 
-
-	Control::Timer jumpCd, jumpTime;
-	Control::Key jumpKey;
-	float32 defaultMovementSpeed;
+	Control::MultiKey *keySpellCast;
 };
 

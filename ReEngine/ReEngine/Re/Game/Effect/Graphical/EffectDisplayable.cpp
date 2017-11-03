@@ -7,7 +7,7 @@ namespace Effect
 
 
 
-	bool Displayable::canBeParent(Base * potentialParent) const
+	bool Displayable::canBeChildOf(Base * potentialParent) const
 	{
 		return dynamic_cast<Game::Actor*>(potentialParent);
 	}

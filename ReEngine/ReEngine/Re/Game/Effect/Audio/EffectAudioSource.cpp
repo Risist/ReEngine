@@ -12,7 +12,7 @@ namespace Effect
 		for (auto it : musics)
 			delete it;
 	}
-	bool AudioSource::canBeParent(Base * potentialParent) const
+	bool AudioSource::canBeChildOf(Base * potentialParent) const
 	{
 		return dynamic_cast<Game::Actor*>(potentialParent);
 	}
@@ -95,7 +95,7 @@ namespace Effect
 
 	///////////////////// Listener
 
-	bool Effect::AudioListener::canBeParent(Base * potentialParent) const
+	bool Effect::AudioListener::canBeChildOf(Base * potentialParent) const
 	{
 		return dynamic_cast<Game::Actor*>(potentialParent);
 	}

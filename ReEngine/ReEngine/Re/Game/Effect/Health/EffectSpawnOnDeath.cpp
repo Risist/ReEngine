@@ -7,7 +7,7 @@ namespace Effect
 		:createActor(_createActor)
 	{
 	}
-	bool SpawnOnDeath::canBeParent(Base * potentialParent) const
+	bool SpawnOnDeath::canBeChildOf(Base * potentialParent) const
 	{
 		return dynamic_cast<Transformable*>(potentialParent);
 	}

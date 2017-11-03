@@ -28,8 +28,8 @@ namespace Effect
 	}
 	StaticMovement * StaticMovement::setAxis(const string & x, const string & y)
 	{
-		xAxis = getActor()->getInputAxis(x);
-		yAxis = getActor()->getInputAxis(y);
+		xAxis = Control::input.getAxis(x);
+		yAxis = Control::input.getAxis(y);
 		return this;
 	}
 	/*void StaticMovement::serialiseF(std::ostream & file, Res::DataScriptSaver & saver) const

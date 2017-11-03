@@ -75,7 +75,7 @@ where ClassA, ClassB ect. are classes which inherits from base
 
 #define SERIALISATION_NAME(ClassName) \
 	public:	\
-		virtual const char* getName() const {return #ClassName; }
+		virtual const char* getSerialisationName() const {return #ClassName; }
 
 #define MULTI_SERIALISATION_INTERFACE(BaseClassName) \
 	static std::function<BaseClassName*(const std::string& )> creationFunction; \

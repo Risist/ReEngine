@@ -25,7 +25,7 @@ namespace Gui
 			background.setPosition(getActualPosition());
 			
 			background.setFillColor(stateBackground.cl);
-			stateBackground.ts.setRectShape(background);
+			stateBackground.ts.set(background);
 			
 			background.setSize(getWh());
 			background.setOrigin(halfWh);

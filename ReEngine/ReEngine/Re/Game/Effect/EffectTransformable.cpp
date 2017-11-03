@@ -21,7 +21,7 @@ namespace Effect
 		setRotation( Degree(loader.load<float>("rot", 0.f)) );
 		Super::deserialiseF(file, loader);
 	}*/
-	bool Transformable::canBeParent(Base * potentialParent) const
+	bool Transformable::canBeChildOf(Base * potentialParent) const
 	{
 		return dynamic_cast<Game::Actor*>(potentialParent);
 	}

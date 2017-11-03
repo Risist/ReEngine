@@ -8,7 +8,7 @@ namespace Effect
 	{
 	}
 
-	bool FollowCamera::canBeParent(Base * potentialParent) const
+	bool FollowCamera::canBeChildOf(Base * potentialParent) const
 	{
 		return dynamic_cast<Transformable*>(potentialParent);
 	}
@@ -25,10 +25,12 @@ namespace Effect
 
 		assert(updateTarget);
 
+		Vector2D desiredCenter = -offset.getRotated(updateTarget->getRotation()) + updateTarget->getPosition();
+
 		cam.setCenter(
 			lerp(
-				cam.getCenter(), 
-				(Vector2D)updateTarget->getTransform().transformPoint(offset), 
+				cam.getCenter(), desiredCenter,
+				//(Vector2D)updateTarget->getTransform().transformPoint(offset), 
 				smoothness.x
 			)
 		);

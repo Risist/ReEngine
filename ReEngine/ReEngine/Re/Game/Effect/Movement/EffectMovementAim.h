@@ -16,7 +16,7 @@ namespace Effect
 
 		////// events
 
-		virtual bool canBeParent(Effect::Base* potentialParent) const override;
+		virtual bool canBeChildOf(Effect::Base* potentialParent) const override;
 		virtual void onInit() override;
 		virtual void onUpdate(sf::Time dt) override;
 

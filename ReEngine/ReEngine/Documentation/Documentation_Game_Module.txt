@@ -1,5 +1,5 @@
 
-/// WIP /// UN ACTUAL
+/// WIP /// UNACTUAL
 
 Game module controls whole game workflow. Rest modules has utility role and 
 should be somehow used in game module to have an influence on engine.

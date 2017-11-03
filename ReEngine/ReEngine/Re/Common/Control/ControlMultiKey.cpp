@@ -2,6 +2,11 @@
 
 namespace Control
 {
+	void MultiKey::reset()
+	{
+		for (auto&it : keys)
+			it.reset();
+	}
 	bool MultiKey::isReady() const
 	{
 		for (auto&it : keys)

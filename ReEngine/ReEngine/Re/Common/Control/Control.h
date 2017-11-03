@@ -7,3 +7,5 @@
 #include <Re\Common\Control\ControlMultiKey.h>
 #include <Re\Common\Control\ControlAxis.h>
 
+#include <Re\Common\Control\ControlInput.h>
+

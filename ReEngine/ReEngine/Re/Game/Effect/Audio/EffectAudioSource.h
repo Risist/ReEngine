@@ -15,7 +15,7 @@ namespace Effect
 		~AudioSource();
 
 
-		virtual bool canBeParent(Base * potentialParent) const override;
+		virtual bool canBeChildOf(Base * potentialParent) const override;
 		virtual void onUpdate(sf::Time dt) override;
 
 		AudioSource* addSound(ResId soundId, float volume = 100.f, float attenuation = 1.f, float minDistance = 100.f, bool loop = false, float pitch = 1.f)
@@ -73,7 +73,7 @@ namespace Effect
 		SERIALISATION_NAME(AudioListener)
 	public:
 
-		virtual bool canBeParent(Base * potentialParent) const override;
+		virtual bool canBeChildOf(Base * potentialParent) const override;
 		virtual void onUpdate(sf::Time dt) override;
 
 

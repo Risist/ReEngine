@@ -1,4 +1,36 @@
-< step = 0; stepMin = 0; stepMax = 350; speed = 5. >
+< step = 0; stepMin = 0; stepMax = 200; speed = 2.5 >
+	<model = 4; step = 0;>
+	<model = 4; step = 50; rot = 40>
+	<model = 4; step = 100; rot = 80>
+	model = 4; step = 350;>
+	
+	<model = 5; step = 0;>
+	<model = 5; step = 50; rot = -50; posX = 5; posY = 15>
+	<model = 5; step = 100; rot = -20; posX = 5; posY = 10>
+	model = 5; step = 350;>
+	
+	<model = 6; step = 0;>
+	<model = 6; step = 50; rot = -40>
+	<model = 6; step = 140; rot = 30>
+	model = 6; step = 350;>
+	
+	<model = 7; step = 0;>
+	<model = 7; step = 50; rot = -30; posX = 0; posY = -20>
+	<model = 7; step = 100; rot = -20; posX = 0; posY = -20>
+	<model = 7; step = 140; rot = 20; posX = 0; posY = -20>
+	model = 7; step = 350;>
+	
+	<model = 0; step = 110; >
+	model = 0; step = 140; rot = 40>
+	model = 0; step = 150; rot = 60>
+
+
+	<model = 1; step = 0;>
+	<model = 1; step = 50; posY = -300; >
+	<model = 1; step = 100; posY =	-150; rot = 70; posX = 5>
+	<model = 1; step = 110; posY =	-150; rot = 70; posX = 5>
+	<model = 1; step = 140; posY =	100; rot = 100; posX = 5>
+	model = 1; step = 350;>
 	
 
 

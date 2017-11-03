@@ -14,7 +14,7 @@ namespace Effect
 	public:
 		SpawnOnDeath(function<Game::Actor*()> _createActor);
 
-		virtual bool canBeParent(Base* potentialParent) const override;
+		virtual bool canBeChildOf(Base* potentialParent) const override;
 		virtual void onDeath() override;
 
 		

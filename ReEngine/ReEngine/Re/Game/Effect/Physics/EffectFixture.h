@@ -36,7 +36,7 @@ namespace Effect
 
 	public: /// events
 
-		virtual bool canBeParent(Base* potentialParent) const override { return dynamic_cast<Rigidbody*>(potentialParent); }
+		virtual bool canBeChildOf(Base* potentialParent) const override { return dynamic_cast<Rigidbody*>(potentialParent); }
 
 		virtual void onDeconstructionFixture(b2Fixture* fixture) override;
 

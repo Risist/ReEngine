@@ -73,7 +73,7 @@ namespace Gui
 		
 		auto it = el.begin();
 		{
-			saver.save("type", (*it)->getName() );
+			saver.save("type", (*it)->getSerialisationName() );
 			(*it)->serialise(file, saver);
 		}
 		DATA_SCRIPT_MULTILINE_SAVE(file, saver, it != el.end());

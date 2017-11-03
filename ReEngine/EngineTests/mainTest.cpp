@@ -7,7 +7,7 @@ Clock performanceClock;
 void init()
 {
 	srand((unsigned int)time(nullptr));
-	wnd.create(VideoMode(800, 600), "ReEngine");
+	wnd.create(VideoMode(1300, 700), "ReEngine");
 	wnd.setVerticalSyncEnabled(true);
 
 	cam.create(Vector2D((float32)wnd.getSize().x, (float32)wnd.getSize().y));
@@ -27,9 +27,9 @@ void update()
 {	
 	
 	performanceClock.restart();
-	Game::stateManager.onUpdate();
-	
 
+	Control::input.update();
+	Game::stateManager.onUpdate();
 
 	Gui::gui.onUpdate(wnd, RenderStates::Default);
 	

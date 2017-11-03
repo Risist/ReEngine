@@ -19,7 +19,7 @@ namespace Gui
 			sh.setOrigin(halfWh);
 
 			sh.setFillColor(background.cl);
-			background.ts.setRectShape(sh);
+			background.ts.set(sh);
 			wnd.draw(sh, states);
 		}
 
@@ -28,53 +28,12 @@ namespace Gui
 			sh.setPosition(getActualPosition());
 
 			sh.setFillColor(foreground.cl);
-			foreground.ts.setConvexShape(sh);
+			foreground.ts.set(sh);
 			
 			directionMode(sh, this);
 
 			wnd.draw(sh, states);
 		}
-
-		
-		/// foreground
-		/*{
-			sf::ConvexShape sh(4);
-			sh.setPosition(getActualPosition());
-			sh.setFillColor(foreground.cl);
-			foreground.ts.setConvexShape(sh);
-			/*	--		+-
-					 A
-				-+		++	*/
-			/*if (direction == Direction::right)
-			{
-				sh.setPoint(0, Vector2D(-halfWh.x, -halfWh.y));
-				sh.setPoint(1, Vector2D(-halfWh.x + halfWh.x*2*progress, -halfWh.y));
-				sh.setPoint(2, Vector2D(-halfWh.x + halfWh.x*2*progress, halfWh.y));
-				sh.setPoint(3, Vector2D(-halfWh.x, halfWh.y));
-			}
-			else if (direction == Direction::left)
-			{
-				sh.setPoint(0, Vector2D(halfWh.x - halfWh.x * 2 * progress, -halfWh.y));
-				sh.setPoint(1, Vector2D(halfWh.x , -halfWh.y));
-				sh.setPoint(2, Vector2D(halfWh.x , halfWh.y));
-				sh.setPoint(3, Vector2D(halfWh.x - halfWh.x * 2 * progress, halfWh.y));
-			}
-			else if (direction == Direction::up)
-			{
-				sh.setPoint(0, Vector2D(-halfWh.x, -halfWh.y + halfWh.y * 2 * (1 - progress)));
-				sh.setPoint(1, Vector2D(halfWh.x, -halfWh.y + halfWh.y * 2 * (1-progress)));
-				sh.setPoint(2, Vector2D(halfWh.x, halfWh.y));//
-				sh.setPoint(3, Vector2D(-halfWh.x, halfWh.y));//
-			}
-			else if (direction == Direction::down)
-			{
-				sh.setPoint(0, Vector2D(-halfWh.x, -halfWh.y)); //
-				sh.setPoint(1, Vector2D(halfWh.x, -halfWh.y)); //
-				sh.setPoint(2, Vector2D(halfWh.x, -halfWh.y + halfWh.y * 2 * progress));
-				sh.setPoint(3, Vector2D(-halfWh.x, -halfWh.y + halfWh.y * 2 * progress));
-			}
-			wnd.draw(sh, states);
-		}*/
 	}
 
 	void ProgressBar::serialiseF(std::ostream & file, Res::DataScriptSaver & saver) const

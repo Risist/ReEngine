@@ -1,0 +1,8 @@
+< step = 0; stepMin = 0; stepMax = 100; speed = 3.5 >
+	<model = 4; step = 0; rot = 0>
+	<model = 4; step = 100; rot = -60>
+
+	<model = 5; step = 0; rot = 0>
+	<model = 5; step = 100; rot = 40; posY = 20>
+		
+<\>

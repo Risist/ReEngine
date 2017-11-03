@@ -15,7 +15,7 @@ namespace Effect
 		Displayable() = default;
 
 		/// only a transformable can be parent for Displayable
-		virtual bool canBeParent(Base* potentialParent) const override;
+		virtual bool canBeChildOf(Base* potentialParent) const override;
 
 		/// childrens have to define display behaviour
 		virtual void onDisplay() override = 0;

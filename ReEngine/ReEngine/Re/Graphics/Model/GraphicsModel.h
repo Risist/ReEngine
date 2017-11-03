@@ -42,7 +42,7 @@ namespace Graphics
 
 		////// setters
 		void setOrigin(const Vector2D& s) { sp.setOrigin(s + Vector2D(sp.getTextureRect().width*0.5f, sp.getTextureRect().height*0.5f)); }
-		void setTexture(ResId tsId) { tsInst[tsId].setSprite(sp); }
+		void setTexture(ResId tsId) { tsInst[tsId].set(sp); }
 
 		////// getters
 		Vector2D getOrigin() const { return sp.getOrigin(); }
@@ -58,9 +58,6 @@ namespace Graphics
 		ModelDef baseDef;
 		/// animation influences
 		ModelDef animationDef;
-
-		/// how many animationa has been applied
-		size_t appliedAnimationsCount{0};
 
 	protected:
 		virtual void serialiseF(std::ostream& file, Res::DataScriptSaver& saver) const override;

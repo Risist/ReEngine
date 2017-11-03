@@ -1,10 +1,19 @@
 #pragma once
 #include <Re\Common\utility.h>
 
+/*
+Mind is decision making system based on utility approach
+
+Mind has available list of behaviours it can choose to run
+Each behaviour computes utility value which will decide how likely are they to be choosen
+After one behaviour has ended its work then the new one is randomly choosen with the bigger probability the more utility behaviour has.
+If a behavour has utility lower than Mind's treshold it cant be choosen
+
+*/
 namespace Ai
 {
 	class Mind;
-	using Utility_t = float;
+	using Utility_t = float32;
 
 	/// class for representation singular behaviours
 	/// they are choosen randomly with possibility to determine probability of choose each
@@ -70,9 +79,12 @@ namespace Ai
 			return newBehaviour;
 		}
 
+		/// sets @s as an currently processed behaviour
 		void setBehaviour(BehaviourBase* s);
+		/// sets behaviour with @id as currently processed behaviours
 		void setBehaviour(size_t id);
 		
+		/// adds new behaviour and sets it as an current behaviour
 		template<typename Behaviour>
 		Behaviour* setNewBehaviour(Behaviour* s, const string& name = "")
 		{

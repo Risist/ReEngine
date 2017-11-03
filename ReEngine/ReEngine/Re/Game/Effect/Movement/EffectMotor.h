@@ -14,7 +14,7 @@ namespace Effect
 	public:
 		Motor(float32 movementSpeed = 0.f, Angle angleOffset = Angle() );
 
-		virtual bool canBeParent(Base* potential) const override;
+		virtual bool canBeChildOf(Base* potential) const override;
 		virtual void onUpdate(sf::Time dt) override;
 
 		float32 movementSpeed;

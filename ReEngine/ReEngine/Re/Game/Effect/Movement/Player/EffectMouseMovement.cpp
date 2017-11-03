@@ -33,7 +33,7 @@ namespace Effect
 	}
 	MouseMovement * MouseMovement::setKey(const std::string & keyCode)
 	{
-		pressKey = getActor()->getInputKey(keyCode);
+		pressKey = Control::input.getKey(keyCode);
 		return this;
 	}
 	/*void MouseMovement::serialiseF(std::ostream & file, Res::DataScriptSaver & saver) const

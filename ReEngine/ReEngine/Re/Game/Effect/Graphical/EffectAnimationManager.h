@@ -19,7 +19,7 @@ namespace Effect
 		AnimationManager(Effect::Model& model);
 
 		////// events
-		virtual bool canBeParent(Base* potentialParent) const override;
+		virtual bool canBeChildOf(Base* potentialParent) const override;
 
 		virtual void onInit() override;
 		virtual void onUpdate(sf::Time dt) override;

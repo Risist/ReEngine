@@ -13,7 +13,7 @@ namespace Effect
 
 	}
 
-	bool RespawnAfterAWhile::canBeParent(Base * potential) const
+	bool RespawnAfterAWhile::canBeChildOf(Base * potential) const
 	{
 		return dynamic_cast<Game::Actor*>(potential);
 	}
@@ -54,7 +54,7 @@ namespace Effect
 
 	}
 
-	bool DieAfterAWhile::canBeParent(Base * potential) const
+	bool DieAfterAWhile::canBeChildOf(Base * potential) const
 	{
 		return dynamic_cast<Game::Actor*>(potential);
 	}
@@ -93,7 +93,7 @@ namespace Effect
 	}
 
 
-	bool DieOnCollision::canBeParent(Base * potential) const
+	bool DieOnCollision::canBeChildOf(Base * potential) const
 	{
 		return dynamic_cast<Effect::Fixture*>(potential) || dynamic_cast<Effect::Rigidbody*>(potential);
 	}

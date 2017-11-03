@@ -1,74 +1,50 @@
 #include <Re\Game\Effect\Movement\Player\EffectRotatedMovement.h>
 #include <Re\Graphics\Graphics.h>
+#include <Re\Game\Effect\Physics\EffectRigidbody.h>
 
 namespace Effect
 {
 
-	/**
-	RotatedMovement::RotatedMovement(float32 _linearSpeed, float32 _angularSpeed)
-		: linearSpeed(_linearSpeed), angularSpeed(_angularSpeed), angularForceMax(99999999999999999.f)
+	
+	RotatedMovement::RotatedMovement(float32 _linearSpeed)
+		: StaticMovement(_linearSpeed)
 	{
 		wnd.setMouseCursorGrabbed(true);
 	}
 
 	void RotatedMovement::onUpdate(sf::Time dt)
 	{
-		Vector2D offset;
-		bool moved = false;
+		assert(xAxis && yAxis);
 
-		if (actionMap.isActive(codeUp))
+		Vector2D offset = { xAxis->getValue(), yAxis->getValue() };
+
+		float dragValue = clamp(drag.measure().x * rotationSmoothness*dt.asSeconds(), -rotationSpeedMax.asDegree(), rotationSpeedMax.asDegree()) * 1000;
+
+		((Rigidbody*)getParent())->getRigidbody()->ApplyTorque(Degree(dragValue).asRadian(), true);
+
+		if (!offset.isZero())
 		{
-			--offset.y;
-			moved = true;
-		}
-		if (actionMap.isActive(codeDown))
-		{
-			++offset.y;
-			moved = true;
-		}
-		if (actionMap.isActive(codeLeft))
-		{
-			--offset.x;
-			moved = true;
-		}
-		if (actionMap.isActive(codeRight))
-		{
-			++offset.x;
-			moved = true;
+			applyInfluence(offset.getRotated(getActor()->getRotation() ) );
 		}
 
-		if (moved)
+		/////////////Super::onUpdate(dt);
+		if (influence.getLenghtSq() <= minimalDistance*minimalDistance)
 		{
-			offset.normalise();
-
-			if (updateModePosition == toRigidbody)
-			{
-				assert(getOwner()->isRigidbodyCreated());
-				getOwner()->getRigidbody().ApplyForceToCenter(
-					getOwner()->getRigidbody().GetWorldVector(
-
-						offset* linearSpeed*dt.asSeconds() * 1000.f
-					), false);
-			}
-			else if(updateModePosition == toTransform)
-			{
-				offset.rotate(getOwner()->getRotation());
-				getOwner()->move(offset * linearSpeed * dt.asSeconds() * 1000);
-			}
+			/// stored influence is too low
+			stop();
 		}
 
-		float dragValue = clamp(drag.measure().x * angularSpeed*dt.asSeconds() * 1000, -angularForceMax, angularForceMax);
+		/// execute movement
+		if (bAtMove)
+		{
 
-		if (updateModeRotation == toRigidbody)
-		{
-			assert(getOwner()->isRigidbodyCreated());
-			getOwner()->getRigidbody().ApplyTorque(Degree(dragValue).asRadian(), true);
+			updatePosition(dt, influence.getNormalised());
+			///updateRotation(dt, influence);
+
+			influence *= influenceFall;
 		}
-		else if (updateModeRotation == toTransform)
-		{
-			getOwner()->rotate(dragValue);
-		}
+		//////
 		
 		drag.loopMouse(lockRadius);
-	}*/
+	}
 }

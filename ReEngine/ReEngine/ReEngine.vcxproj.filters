@@ -144,24 +144,6 @@
     <ClInclude Include="Re\Ai\BehaviourTree\Decorator\BtDecoratorLoop.h">
       <Filter>Ai\Behaviour Tree\Decorator</Filter>
     </ClInclude>
-    <ClInclude Include="Re\Ai\Sense\SenseHolder.h">
-      <Filter>Ai\sensor</Filter>
-    </ClInclude>
-    <ClInclude Include="Re\Ai\Sense\SenseFilterBase.h">
-      <Filter>Ai\sensor</Filter>
-    </ClInclude>
-    <ClInclude Include="Re\Ai\Sense\Filters\SenseFilterCircle.h">
-      <Filter>Ai\sensor\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="Re\Ai\Sense\Filters\SenseFilterCone.h">
-      <Filter>Ai\sensor\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="Re\Ai\Sense\sense.h">
-      <Filter>Ai\sensor</Filter>
-    </ClInclude>
-    <ClInclude Include="Re\Ai\Sense\Queries\SenseBestQuery.h">
-      <Filter>Ai\sensor\Queries</Filter>
-    </ClInclude>
     <ClInclude Include="Re\Graphics\Gui\GuiNamedButton.h">
       <Filter>Graphics\Gui</Filter>
     </ClInclude>
@@ -255,9 +237,6 @@
     <ClInclude Include="Re\Game\Effect\Movement\Player\EffectStaticMovement.h">
       <Filter>Game\Effect\Movelement\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Re\Game\InputController.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Re\Game\Effect\Movement\Player\EffectRotatedMovement.h">
       <Filter>Game\Effect\Movelement\Player</Filter>
     </ClInclude>
@@ -300,6 +279,27 @@
     <ClInclude Include="Re\Common\Math\Transform.h">
       <Filter>Common\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Re\Ai\Sense\AiSenseBasic.h">
+      <Filter>Ai\Sense</Filter>
+    </ClInclude>
+    <ClInclude Include="Re\Ai\Sense\Filters\AiSenseFilters.h">
+      <Filter>Ai\Sense\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Re\Ai\Sense\SenseType\AiSenseTypes.h">
+      <Filter>Ai\Sense\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Re\Graphics\Model\GraphicsMetaAnimation.h">
+      <Filter>Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Re\Ai\Sense\SenseType\AiSenseType.h">
+      <Filter>Ai</Filter>
+    </ClInclude>
+    <ClInclude Include="Re\Game\Effect\Ai\EffectHearingSense.h">
+      <Filter>Game\Effect\Ai</Filter>
+    </ClInclude>
+    <ClInclude Include="Re\Common\Control\ControlInput.h">
+      <Filter>Common\Control</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -334,15 +334,6 @@
     </Filter>
     <Filter Include="Ai\Behaviour Tree\Leaf">
       <UniqueIdentifier>{3599a2d1-dfe0-409d-9d0f-02fc01f87aae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Ai\sensor">
-      <UniqueIdentifier>{91258dc2-3430-4ad3-9109-629be4ec0aa2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Ai\sensor\Filters">
-      <UniqueIdentifier>{86b4ffa4-6ce8-4b5d-a80b-418e8ee865dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Ai\sensor\Queries">
-      <UniqueIdentifier>{379dd7c6-a49e-46c6-985f-c70455ee4e29}</UniqueIdentifier>
     </Filter>
     <Filter Include="Documentation">
       <UniqueIdentifier>{db9d83d6-0304-40bd-b3ba-008354bbb6ad}</UniqueIdentifier>
@@ -385,6 +376,18 @@
     </Filter>
     <Filter Include="Common\Control">
       <UniqueIdentifier>{f76b823e-fe16-49c7-ae4a-a6f8451df860}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ai\Sense">
+      <UniqueIdentifier>{91258dc2-3430-4ad3-9109-629be4ec0aa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ai\Sense\Filters">
+      <UniqueIdentifier>{77a2a360-51b5-4c68-bdd3-72927488df76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ai\Sense\Types">
+      <UniqueIdentifier>{3b015e21-83b4-4d49-93ef-939d10e2a77a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Effect\Ai">
+      <UniqueIdentifier>{34718210-78fd-4ce1-8264-1e8d3b9ad82e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -466,18 +469,6 @@
     </ClCompile>
     <ClCompile Include="Re\Ai\BehaviourTree\Composite\BtSequencer.cpp">
       <Filter>Ai\Behaviour Tree\Composite</Filter>
-    </ClCompile>
-    <ClCompile Include="Re\Ai\Sense\SenseHolder.cpp">
-      <Filter>Ai\sensor</Filter>
-    </ClCompile>
-    <ClCompile Include="Re\Ai\Sense\Filters\SenseFilterCircle.cpp">
-      <Filter>Ai\sensor\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="Re\Ai\Sense\Filters\SenseFilterCone.cpp">
-      <Filter>Ai\sensor\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="Re\Ai\Sense\Queries\SenseBestQuery.cpp">
-      <Filter>Ai\sensor\Queries</Filter>
     </ClCompile>
     <ClCompile Include="Re\Graphics\Gui\GuiNamedButton.cpp">
       <Filter>Graphics\Gui</Filter>
@@ -575,9 +566,6 @@
     <ClCompile Include="Re\Game\Effect\Movement\Player\EffectRadiusMovement.cpp">
       <Filter>Game\Effect\Movelement\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Re\Game\InputController.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Re\Game\Effect\Graphical\EffectDisplayable.cpp">
       <Filter>Game\Effect\Graphics</Filter>
     </ClCompile>
@@ -604,6 +592,24 @@
     </ClCompile>
     <ClCompile Include="Re\Common\Math\Transform.cpp">
       <Filter>Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Re\Ai\Sense\AiSenseBasic.cpp">
+      <Filter>Ai\Sense</Filter>
+    </ClCompile>
+    <ClCompile Include="Re\Ai\Sense\Filters\AiSenseFilters.cpp">
+      <Filter>Ai\Sense\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Re\Ai\Sense\SenseType\AiSenseTypes.cpp">
+      <Filter>Ai\Sense\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Re\Graphics\Model\GraphicsMetaAnimation.cpp">
+      <Filter>Graphics\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Re\Game\Effect\Ai\EffectHearingSense.cpp">
+      <Filter>Game\Effect\Ai</Filter>
+    </ClCompile>
+    <ClCompile Include="Re\Common\Control\ControlInput.cpp">
+      <Filter>Common\Control</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

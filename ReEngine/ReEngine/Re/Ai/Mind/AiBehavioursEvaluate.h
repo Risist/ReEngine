@@ -2,6 +2,9 @@
 #include <Re\Ai\Mind\AiMind.h>
 #include <Re\Ai\AiEmotionDef.h>
 
+/*
+base classes of behaviours allowing most comon utility computations
+*/
 namespace Ai
 {
 	////////////////////////////////////////////////////////////////////////////////

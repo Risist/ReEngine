@@ -88,12 +88,13 @@ namespace Ai
 
 	void Mind::deserialiseF(std::istream & file, Res::DataScriptLoader & loader)
 	{
-		treshold = loader.load("treshold", 0.f);
+		/// TODO
+		/*treshold = loader.load("treshold", 0.f);
 
 		DATA_SCRIPT_MULTILINE(file, loader)
 		{
 			loader.load<string>("name", "");
-		}
+		}*/
 	}
 
 
@@ -104,9 +105,11 @@ namespace Ai
 
 	void BehaviourBase::serialiseF(std::ostream & file, Res::DataScriptSaver & saver) const
 	{
+		saver.save<string>("name", name, "");
 	}
 	void BehaviourBase::deserialiseF(std::istream & file, Res::DataScriptLoader & loader)
 	{
+		name = loader.load<string>("name", "");
 	}
 
 

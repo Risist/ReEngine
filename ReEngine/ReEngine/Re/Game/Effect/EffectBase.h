@@ -23,7 +23,7 @@ namespace Effect
 		/// @summary	checks requirements on potential parent. Used to ensure right creation
 		/// @note		should be called only in debug mode
 		/// @return		whether the potential parent meets requirements
-		virtual bool canBeParent(Base* potentialParent) const { return false; }
+		virtual bool canBeChildOf(Base* potentialParent) const { return false; }
 
 		/// @summary: called after owner ptr is set up
 		virtual void onInit() {}
@@ -281,7 +281,7 @@ namespace Effect
 	Ty* Composite::addEffect(Ty * _new, bool activated)
 	{
 		assert(_new);
-		assert(_new->canBeParent(this));
+		assert(_new->canBeChildOf(this));
 		childs.push_back(unique_ptr<Base>(_new));
 
 		_new->setActor(getActor());

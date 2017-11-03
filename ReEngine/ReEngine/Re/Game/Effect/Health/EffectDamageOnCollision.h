@@ -25,7 +25,7 @@ namespace Effect
 		DamageOnCollision(float32 damage = 1.f, float32 bleed = 1.f, EMode mode = enter);
 
 	public: /// events
-		virtual bool canBeParent(Base* potentialParent) const;
+		virtual bool canBeChildOf(Base* potentialParent) const;
 
 		virtual void onCollisionEnter(Game::Actor& other, b2Contact& contact) override;
 		virtual void onCollisionExit(Game::Actor& other, b2Contact& contact) override;

@@ -146,6 +146,7 @@
     <ClCompile Include="ActorPlayer.cpp" />
     <ClCompile Include="Layers.cpp" />
     <ClCompile Include="mainTest.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="StateGameplay.cpp" />
     <ClCompile Include="StateGuiTest.cpp" />
   </ItemGroup>
@@ -156,8 +157,13 @@
     <Text Include="anim_reaperPush.txt" />
     <Text Include="anim_reaperSlash.txt" />
     <Text Include="anim_reaperWalk.txt" />
+    <Text Include="anim_slashX.txt" />
+    <Text Include="anim_slashY.txt" />
+    <Text Include="anim_spellCast.txt" />
     <Text Include="frag_shader.txt" />
     <Text Include="model_reaper.txt" />
+    <Text Include="model_fury.txt" />
+    <Text Include="model_obstacle.txt" />
     <Text Include="vertex_shader.txt" />
     <Text Include="world_test.txt" />
     <Text Include="animation.txt" />
@@ -170,6 +176,7 @@
   <ItemGroup>
     <ClInclude Include="ActorPlayer.h" />
     <ClInclude Include="Layers.h" />
+    <ClInclude Include="Obstacle.h" />
     <ClInclude Include="StateGameplay.h" />
     <ClInclude Include="StateGuiTest.h" />
   </ItemGroup>

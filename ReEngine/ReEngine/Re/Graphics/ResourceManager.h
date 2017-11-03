@@ -23,22 +23,22 @@ public:
 	{
 		ResId atlasId;
 		Texture* getTexture() const;
-		void setSprite(sf::Sprite& inSp)
+		void set(sf::Sprite& inSp)
 		{
 			inSp.setTexture(*getTexture(), false);
 			inSp.setTextureRect(bounds);
 		}
-		void setConvexShape(sf::ConvexShape& inSp)
+		void set(sf::ConvexShape& inSp)
 		{
 			inSp.setTexture(getTexture(), false);
 			inSp.setTextureRect(bounds);
 		}
-		void setCircleShape(sf::CircleShape& inSp)
+		void set(sf::CircleShape& inSp)
 		{
 			inSp.setTexture(getTexture(), false);
 			inSp.setTextureRect(bounds);
 		}
-		void setRectShape(sf::RectangleShape& inSp)
+		void set(sf::RectangleShape& inSp)
 		{
 			inSp.setTexture(getTexture(), false);
 			inSp.setTextureRect(bounds);
@@ -56,17 +56,6 @@ public:
 	std::unordered_map< ResId, string> cashedScript;
 	/// for resources which can not be preloaded save paths to use in game
 	std::unordered_map< ResId, string> paths;
-
-	//////// physics
-	/// cashed body definitions to allow easier creation of rigidbodies
-	std::unordered_map< ResId, b2BodyDef> bodyDefs;
-	/// cashed fixture definitions to allow easier creation of fixtures
-	std::unordered_map< ResId, b2FixtureDef> fixtureDefs;
-
-	/// cashed shapes definitions to allow easier creation of shapes
-	std::unordered_map< ResId, b2CircleShape> circleShapes;
-	std::unordered_map< ResId, b2PolygonShape> polygonShapes;
-	std::unordered_map< ResId, b2ChainShape> chainShapes;
 
 	void createTexture(Texture& ts, const std::string& path);
 	string createTranscription(const std::string& path);
@@ -101,11 +90,5 @@ extern ResourceManager res;
 #define soundInst res.sounds
 #define scriptInst res.cashedScript
 #define pathInst res.paths
-
-#define bodyDefInst res.bodyDefs
-#define fixtureInst res.fixtureDefs
-#define circleShapeInst res.circleShapes
-#define polygonShapeInst res.polygonShapes
-#define chainShapeInst res.chainShapes
 
 

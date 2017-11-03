@@ -4,11 +4,11 @@
 namespace Effect
 {
 	/// WIP
-	/*class RadiusMovement : public MovementAim
+	class RadiusMovement : public MovementAim
 	{
 		SERIALISATION_NAME(RadiusMovement)
 	public:
-		RadiusMovement(float32 movementSpeed = 1.f);
+		RadiusMovement(float32 movementSpeedMax = 1.f);
 
 
 		////// events
@@ -24,8 +24,12 @@ namespace Effect
 			movementRadiusMax = movementMax;
 			return this;
 		}
+		RadiusMovement* setMovementSpeedMax(float32 s)
+		{
+			movementSpeedMax = s;
+			return this;
+		}
 		REDEFINE_SETTER_1(RadiusMovement, setInfluenceFall, float32);
-		REDEFINE_SETTER_1(RadiusMovement, setMovementSpeed, float32);
 		REDEFINE_SETTER_1(RadiusMovement, setRotationSpeedMax, Angle);
 		REDEFINE_SETTER_1(RadiusMovement, setRotationSmoothness, float32);
 
@@ -43,7 +47,10 @@ namespace Effect
 		{
 			return movementRadiusMax;
 		}
-		float32 getLastMovementSpeedModificator;
+		float32 getMovementSpeedMax() const 
+		{ 
+			return movementSpeedMax; 
+		}
 
 	private:
 		/// the efect does sevral actions
@@ -52,14 +59,14 @@ namespace Effect
 		//float32 movementRadius{200.f};		/// in radius > movementRadius character starts to move towards mouse
 		float32 movementRadiusMax{300.f};	/// describes in which radius character will accerelate with max speed
 
-		float32 lastMovementSpeedModificator;
-
+		float32 movementSpeedMax{1.f};
 
 		REDEFINE_SETTER_1(RadiusMovement, setMinimalDistance, float32);
+		REDEFINE_SETTER_1(RadiusMovement, setMovementSpeed, float32);
 
 	protected:
 		/// TODO
 		// serialiseF
 		// deserialiseF
-	};*/
+	};
 }

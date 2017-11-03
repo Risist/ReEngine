@@ -43,7 +43,7 @@ namespace Effect
 
 
 	/// only actor can be parent for rigidbody
-	bool Rigidbody::canBeParent(Effect::Base* potentialParent) const
+	bool Rigidbody::canBeChildOf(Effect::Base* potentialParent) const
 	{
 		return dynamic_cast<Game::Actor*>(potentialParent);
 	}

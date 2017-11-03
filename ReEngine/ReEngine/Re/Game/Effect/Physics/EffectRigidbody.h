@@ -48,7 +48,7 @@ namespace Effect
 	public: ////// events
 
 		/// only actor can be parent for rigidbody
-		virtual bool canBeParent(Effect::Base* potentialParent) const override;
+		virtual bool canBeChildOf(Effect::Base* potentialParent) const override;
 
 		virtual void onInit() override;
 

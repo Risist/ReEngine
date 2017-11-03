@@ -6,7 +6,7 @@ class StateGameplay : public Game::State
 public:
 	
 	Graphics::Background background;
-	Control::Key restartKey;
+	Control::MultiKey* restartKey;
 
 	virtual void onStart() override;
 	virtual State* onUpdate(sf::Time dt = sf::seconds(1)) override;
